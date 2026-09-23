@@ -53,16 +53,10 @@ Para cada entidade identificada, liste:
 | Atributo | Descrição | Regra de negócio associada |
 |----------|-----------|------------------------------|
 | * Cliente * | * pessoa que compra serviços ou produtos – número de identificação, telefone, endereço, formas de pagamento.* | *atendimento com excelência.)* 
-
 | * Veiculo * | * produto a ser realizado o serviço – número de identificação do carro, placa, modelo, marca, cor, ano, cliente.* | *matéria principal* 
-
 | * Funcionários * | * pessoas que realizam os serviços – cliente, veiculo, nome, cargo, valor de pagamento * | * cargo * 
-
 | * Serviços * | * atividades realizadas com objetivo financeiro – nome e tipo de serviço como lavagem simples, higienização e outros.* | * tipo de serviços * 
-
 | * Pagamento | *– transação financeira – valor total, método de pagamento * | * debito – credito – pix * 
-
-
 | * Produto * | * material utilizado para executar o serviço e ou material de venda para o cliente realizar os cuidados com o carro. -  Veiculo, serviços, pagamento, funcionários, cliente* | * especificações e quantidades * 
 
 ---
@@ -142,9 +136,7 @@ Dessa forma, o modelo conceitual busca representar fielmente os processos da emp
 5. “Auxilie na definição dos relacionamentos e das cardinalidades, considerando as regras de negócio e os processos operacionais da empresa.”
 6. “Analise o Diagrama Entidade-Relacionamento desenvolvido e identifique possíveis inconsistências, sugerindo correções para melhorar a estrutura do modelo.”|
 | **Resposta recebida** | O ChatGPT forneceu orientações sobre a utilização da ferramenta Modelo e auxiliou na construção do Diagrama Entidade-Relacionamento (DER) da empresa Garagem Salles. A partir das informações coletadas na pesquisa de campo, foram sugeridas entidades como Cliente, Veículo, Serviço, Agendamento, Estacionamento e Pagamento, com seus respectivos atributos e identificadores.
-
 A ferramenta também apresentou explicações sobre relacionamentos e cardinalidades, além de gerar representações visuais para facilitar a compreensão e a organização do modelo. Durante o desenvolvimento, foram analisadas imagens do diagrama elaborado pelo grupo, permitindo identificar inconsistências e sugerir ajustes na estrutura dos relacionamentos.
-
 O auxílio da IA contribuiu para a compreensão dos conceitos de modelagem de banco de dados e para a aplicação prática dos conhecimentos adquiridos em sala de aula.. |
 | **Justificativa da escolha final** | Por que o grupo manteve, adaptou ou rejeitou o que a IA sugeriu. |
 | **Reflexão crítica** | Limites, vieses ou erros identificados no uso da IA nessa etapa (ex.: informação desatualizada, alucinação, generalização incorreta sobre o tipo de organização). |
