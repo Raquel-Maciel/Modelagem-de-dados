@@ -41,20 +41,73 @@
 
 ---
 
-## 5. Dicionário de Dados Conceitual (Preliminar)
+## 5. Dicionário de Dados (Conceptual e Lógico)
 
-Para cada entidade identificada, liste:
+Para cada entidade identificada no sistema da Garagem Salles Estúdio Automotivo, detalham-se abaixo os atributos, tipos de dados, cardinalidades e regras associadas.
 
-| Atributo | Descrição | Regra de negócio associada |
-|----------|-----------|------------------------------|
-| * Cliente * | * pessoa que compra serviços ou produtos – número de identificação, telefone, endereço, formas de pagamento.* | *atendimento com excelência.)* 
-| * Veiculo * | * produto a ser realizado o serviço – número de identificação do carro, placa, modelo, marca, cor, ano, cliente.* | *matéria principal* 
-| * Funcionários * | * pessoas que realizam os serviços – cliente, veiculo, nome, cargo, valor de pagamento * | * cargo * 
-| * Serviços * | * atividades realizadas com objetivo financeiro – nome e tipo de serviço como lavagem simples, higienização e outros.* | * tipo de serviços * 
-| * Pagamento | *– transação financeira – valor total, método de pagamento * | * debito – credito – pix * 
-| * Produto * | * material utilizado para executar o serviço e ou material de venda para o cliente realizar os cuidados com o carro. -  Veiculo, serviços, pagamento, funcionários, cliente* | * especificações e quantidades * 
+### 5.1 Entidade: Cliente
+| Atributo | Tipo de Dado | Cardinalidade | Descrição / Regra de Negócio |
+| :--- | :--- | :--- | :--- |
+| id_cliente | Inteiro (PK) | 1 para N | Identificador único do cliente (Chave Primária). |
+| nome | Varchar(100) | Obrigatório | Nome completo do cliente. |
+| cpf | Varchar(14) | Obrigatório (Único) | CPF do cliente para fins fiscais e cadastro (LGPD: dado protegido e sigiloso). |
+| telefone | Varchar(20) | Opcional | Número de contato para avisos de conclusão e agendamentos. |
+| endereco | Varchar(200) | Opcional | Endereço residencial ou comercial do cliente. |
+
+### 5.2 Entidade: Veículo
+| Atributo | Tipo de Dado | Cardinalidade | Descrição / Regra de Negócio |
+| :--- | :--- | :--- | :--- |
+| id_veiculo | Inteiro (PK) | 1 para N | Identificador único do veículo. |
+| placa | Varchar(10) | Obrigatório (Único) | Placa de identificação do automóvel (utilizada para OCR/entrada rápida). |
+| modelo | Varchar(50) | Obrigatório | Modelo do veículo (ex: BMW S1000, Onix, etc.). |
+| marca | Varchar(50) | Obrigatório | Fabricante do veículo. |
+| cor | Varchar(30) | Opcional | Cor predominante do veículo. |
+| ano | Inteiro | Opcional | Ano de fabricação. |
+| id_cliente | Inteiro (FK) | N para 1 | Relaciona o veículo ao seu respectivo proprietário (Cliente). Cada cliente pode possuir um ou mais veículos. |
+
+### 5.3 Entidade: Serviços
+| Atributo | Tipo de Dado | Cardinalidade | Descrição / Regra de Negócio |
+| :--- | :--- | :--- | :--- |
+| id_servico | Inteiro (PK) | 1 para N | Identificador único do serviço oferecido. |
+| nome_servico | Varchar(100) | Obrigatório | Nome da atividade (ex: Lavagem simples, cristalização de vidros, restauração de plásticos). |
+| descricao | Texto | Opcional | Detalhes do que o procedimento inclui. |
+| valor | Decimal(10,2)| Obrigatório | Preço base cobrado pelo serviço. |
+
+### 5.4 Entidade: Ordem de Serviço (OS)
+| Atributo | Tipo de Dado | Cardinalidade | Descrição / Regra de Negócio |
+| :--- | :--- | :--- | :--- |
+| id_os | Inteiro (PK) | 1 para N | Número de identificação da Ordem de Serviço. |
+| data_entrada| Datetime | Obrigatório | Momento exato em que o funcionário registra a entrada do veículo. |
+| data_saida | Datetime | Opcional | Momento de liberação do veículo (Regra: nenhum veículo é liberado sem o pagamento registrado). |
+| id_veiculo | Inteiro (FK) | 1 para 1 | Veículo que está passando pelo atendimento. |
+| id_funcionario| Inteiro (FK) | N para 1 | Funcionário responsável por registrar e acompanhar a ordem de serviço. |
+| status_os | Varchar(30) | Obrigatório | Estado atual (Ex: 'Em Andamento', 'Concluído', 'Aguardando Pagamento'). |
+
+### 5.5 Entidade: Funcionários
+| Atributo | Tipo de Dado | Cardinalidade | Descrição / Regra de Negócio |
+| :--- | :--- | :--- | :--- |
+| id_func | Inteiro (PK) | 1 para N | Identificador único do funcionário. |
+| nome | Varchar(100) | Obrigatório | Nome completo do colaborador. |
+| cargo | Varchar(50) | Obrigatório | Função exercida (ex: Gerente, Atendente, Lavador). |
+| nivel_acesso| Varchar(20) | Obrigatório | Define permissões (Ex: Somente funcionários autorizados/gerentes podem alterar ordens de serviço). |
+
+### 5.6 Entidade: Pagamento
+| Atributo | Tipo de Dado | Cardinalidade | Descrição / Regra de Negócio |
+| :--- | :--- | :--- | :--- |
+| id_pagamento| Inteiro (PK) | 1 para 1 | Identificador da transação financeira. |
+| id_os | Inteiro (FK) | 1 para 1 | Ordem de serviço vinculada ao pagamento. |
+| valor_total | Decimal(10,2)| Obrigatório | Valor cobrado somando os serviços executados e produtos utilizados. |
+| metodo | Varchar(30) | Obrigatório | Forma de pagamento utilizada (Pix, Crédito, Débito, Dinheiro). |
 
 ---
+
+### Convenções, Fluxo de Dados e Governança (LGPD)
+
+* *Convenções de Nomenclatura:* Utilização de letras minúsculas separadas por underscore (snake_case) para tabelas e colunas; chaves primárias padronizadas como id_[entidade] e chaves estrangeiras como id_[entidade_referenciada].
+* *Expressão Formal, Tipos e Índices:* Utilização de padrões relacionais SQL (Integers para chaves, Varchar para textos, Decimal para valores financeiros e Datetime para controle de tempo). Índices criados nas chaves primárias e em campos de alta frequência de busca (como a placa do veículo e o cpf do cliente).
+* *Fluxo de Dados e Acesso por Operação:* O fluxo operacional começa com o cadastro do cliente e do veículo. Em seguida, o funcionário autorizado registra a entrada na Ordem de Serviço, vincula os serviços e produtos utilizados, e o ciclo se encerra obrigatoriamente na tabela de pagamento para a liberação da saída.
+* *Log de Acesso e LGPD:* O sistema mantém rastreabilidade das operações críticas por meio de níveis de acesso. Os dados sensíveis dos clientes (como CPF e telefone) atendem rigorosamente aos princípios da Lei Geral de Proteção de Dados (LGPD), garantindo sigilo corporativo e restrição contra vazamentos ou consultas indevidas.
+
 
 ## 6. Modelagem Conceitual 
 
