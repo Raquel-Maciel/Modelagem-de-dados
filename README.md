@@ -8,17 +8,12 @@
 
 ## 1. Caracterização da Organização
 
-- **Nome e natureza da organização: Garagem SALLES Estúdio Automotivo. **
+* **Nome da Empresa:** Garagem Salles Estúdio automotivo.
+* **Porte e Operação:** Empresa de pequeno porte, contando com uma equipe de 3 funcionários e uma média de atendimento  de aproximadamente 10 por dia.
+* **Problema Identificado:** Atualmente, a empresa realiza o controle de operações de forma predominantemente manual, o que gera *problemas no registro de entrada e saída de veículos*, falta de agilidade no acompanhamento das ordens de serviço e dificuldade na auditoria de pagamentos e estoque de produtos utilizados.
+* **Justificativa da Escolha:** A escolha do estabelecimento justifica-se pela real necessidade de transformação digital e automação dos processos de negócio. A implantação de um sistema informatizado é imprescindível para eliminar gargalos operacionais, garantir a segurança dos dados dos clientes e profissionalizar o controle de faturamento e atendimento.
+* **Evidências e Fontes:** As informações e características operacionais foram levantadas por meio de análise do perfil oficial da empresa no Instagram (@salies.lavagens)
 
-- **Contexto e porte: pequeno porte com fins lucrativo, três funcionários,com atendimento médio de 10 carros por dia. **
-
-- **Problemas e necessidades identificados: não tem nenhum tipo de registro das atividades.**
-
-- **qual é a "crise operacional"? falta de controle de entrada e saída de carros e números de carros atendido.**
-
-- **Justificativa da escolha: escolhemos a instituição pela facilidade de acesso ao local, proximidade com os donos e principalmente por usufruir dos seus sérvios como clientes.**
-
-- **Evidências da organização: https://www.instagram.com/salles.lavagens?stkn=MXcycjV3aG1nbXVzag**
 
 ## 2. Processos de Negócio
 
