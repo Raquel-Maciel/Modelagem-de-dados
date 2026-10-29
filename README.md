@@ -32,7 +32,21 @@
 ---
 
 ## 4. Regras de Negócio
-* cada cliente pode possuir um ou mais veículos – cada veículo deve estar vinculado a um cliente – um veículo pode possuir vários registros de serviços – um veículo não pode ser liberado sem que o pagamento esteja registrado  ou autorizado*
+
+- **Regras operacionais:** *As regras operacionais estabelecem as condições que devem ser cumpridas para que as operações da Garagem Salles Estúdio Automotivo sejam realizadas corretamente.*
+- **RO01** — *Disponibilidade de horários: um agendamento somente poderá ser confirmado se houver disponibilidade de horário e capacidade de atendimento.*
+- **RO02** — *Identificação do cliente: um agendamento somente poderá ser registrado se o cliente estiver cadastrado e identificado no sistema.*
+- **RO03** — *Identificação do veículo: um serviço ou uma permanência no estacionamento somente poderá ser registrado quando o veículo estiver identificado e vinculado ao cadastro correspondente.*
+- **RO04** — *Autorização de serviços: um serviço somente poderá ser iniciado após a confirmação dos serviços solicitados pelo cliente.*
+- **RO05** — *Disponibilidade de vagas: a entrada de um veículo somente poderá ser registrada quando houver vaga disponível no estacionamento.*
+- **RO06** — *Cálculo do estacionamento: o valor da permanência deverá ser calculado com base nos horários de entrada e saída e na tabela de tarifas vigente.*
+- **RO07** — *Registro de pagamento: um pagamento somente poderá ser confirmado após o registro do valor, da forma de pagamento e da confirmação da transação.*
+- **RO08** — *Liberação do veículo: o veículo somente poderá ser liberado após a regularização dos valores devidos ou mediante autorização excepcional registrada.*
+- **RO09** — *Movimentação de estoque: a saída de um produto somente poderá ser registrada se houver quantidade disponível em estoque, exceto em ajustes administrativos devidamente autorizados.*
+- **RO10** — *Registro de vendas: uma venda somente poderá ser concluída após o registro dos produtos, das quantidades e dos valores correspondentes.*
+- **RO11** — *Acesso ao sistema: operações de consulta, inclusão, alteração e exclusão somente poderão ser realizadas por usuários com as permissões necessárias.*
+- **RO12** — *Registro de ocorrências: danos ou irregularidades identificados durante o atendimento ou estacionamento deverão ser registrados antes do encerramento da ocorrência.*
+
 
 
 - **Regras operacionais: o funcionário deve registar a entrada e a saída do veículo – o sistema deve registar dada e horário de entrada e saída – somente funcionários autorizados podem alterar uma ordem de serviço – o estoque deve ser atualizado sempre que um produto for utilizado – o responsável deve conferir os dados do veículo antes de finalizar o atendimento – o sistema deve permitir consultar os atendimentos anteriores*
