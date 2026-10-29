@@ -41,72 +41,69 @@
 
 ---
 
-## 5. Dicionário de Dados (Conceptual e Lógico)
+## 5. Dicionário de Dados Conceitual (Preliminar)
 
-Para cada entidade identificada no sistema da Garagem Salles Estúdio Automotivo, detalham-se abaixo os atributos, tipos de dados, cardinalidades e regras associadas.
+Para cada entidade identificada, liste:
 
 ### 5.1 Entidade: Cliente
-| Atributo | Tipo de Dado | Cardinalidade | Descrição / Regra de Negócio |
-| :--- | :--- | :--- | :--- |
-| id_cliente | Inteiro (PK) | 1 para N | Identificador único do cliente (Chave Primária). |
-| nome | Varchar(100) | Obrigatório | Nome completo do cliente. |
-| cpf | Varchar(14) | Obrigatório (Único) | CPF do cliente para fins fiscais e cadastro (LGPD: dado protegido e sigiloso). |
-| telefone | Varchar(20) | Opcional | Número de contato para avisos de conclusão e agendamentos. |
-| endereco | Varchar(200) | Opcional | Endereço residencial ou comercial do cliente. |
+| Atributo | Descrição | Regra de negócio associada |
+| :--- | :--- | :--- |
+| id_cliente | Identificador único da pessoa que compra serviços ou produtos | Obrigatório; chave primária única para cada cliente cadastrado. |
+| nome | Nome completo do cliente | Obrigatório; deve conter o nome e sobrenome do cliente para identificação. |
+| cpf | Número de identificação de cadastro de pessoa física | Obrigatório e único; utilizado para fins fiscais e de faturamento (Protegido por sigilo/LGPD). |
+| telefone | Número de contato telefônico do cliente | Opcional; utilizado para avisos de conclusão e agendamento de serviços. |
+| endereco | Endereço residencial ou comercial do cliente | Opcional; utilizado para histórico e localização quando necessário. |
 
 ### 5.2 Entidade: Veículo
-| Atributo | Tipo de Dado | Cardinalidade | Descrição / Regra de Negócio |
-| :--- | :--- | :--- | :--- |
-| id_veiculo | Inteiro (PK) | 1 para N | Identificador único do veículo. |
-| placa | Varchar(10) | Obrigatório (Único) | Placa de identificação do automóvel (utilizada para OCR/entrada rápida). |
-| modelo | Varchar(50) | Obrigatório | Modelo do veículo (ex: BMW S1000, Onix, etc.). |
-| marca | Varchar(50) | Obrigatório | Fabricante do veículo. |
-| cor | Varchar(30) | Opcional | Cor predominante do veículo. |
-| ano | Inteiro | Opcional | Ano de fabricação. |
-| id_cliente | Inteiro (FK) | N para 1 | Relaciona o veículo ao seu respectivo proprietário (Cliente). Cada cliente pode possuir um ou mais veículos. |
+| Atributo | Descrição | Regra de negócio associada |
+| :--- | :--- | :--- |
+| id_veiculo | Identificador único do veículo no sistema | Obrigatório; chave primária da entidade veículo. |
+| placa | Placa de identificação oficial do automóvel | Obrigatório e único; utilizado para agilizar a entrada e conferência no balcão. |
+| modelo | Modelo do veículo (ex: BMW S1000, Onix, etc.) | Obrigatório; especifica a linha de fabricação do automóvel. |
+| marca | Fabricante do veículo (ex: BMW, Chevrolet, etc.) | Obrigatório; define a montadora do automóvel. |
+| cor | Cor predominante do veículo | Opcional; detalhe descritivo para conferência física no pátio. |
+| ano | Ano de fabricação do veículo | Opcional; registra a idade do automóvel. |
+| id_cliente | Identificador do proprietário do veículo | Obrigatório; cada cliente pode possuir um ou mais veículos vinculados. |
 
 ### 5.3 Entidade: Serviços
-| Atributo | Tipo de Dado | Cardinalidade | Descrição / Regra de Negócio |
-| :--- | :--- | :--- | :--- |
-| id_servico | Inteiro (PK) | 1 para N | Identificador único do serviço oferecido. |
-| nome_servico | Varchar(100) | Obrigatório | Nome da atividade (ex: Lavagem simples, cristalização de vidros, restauração de plásticos). |
-| descricao | Texto | Opcional | Detalhes do que o procedimento inclui. |
-| valor | Decimal(10,2)| Obrigatório | Preço base cobrado pelo serviço. |
+| Atributo | Descrição | Regra de negócio associada |
+| :--- | :--- | :--- |
+| id_servico | Identificador único da atividade de estética automotiva | Obrigatório; chave primária do serviço. |
+| nome_servico | Nome e tipo de serviço oferecido (lavagem, cristalização, etc.) | Obrigatório; define a atividade executada (ex: lavagem simples, higienização, etc.). |
+| descricao | Detalhamento dos procedimentos realizados na atividade | Opcional; explica o que o serviço inclui para o cliente. |
+| valor | Preço base cobrado pela execução do serviço | Obrigatório; valor financeiro unitário associado ao procedimento. |
 
 ### 5.4 Entidade: Ordem de Serviço (OS)
-| Atributo | Tipo de Dado | Cardinalidade | Descrição / Regra de Negócio |
-| :--- | :--- | :--- | :--- |
-| id_os | Inteiro (PK) | 1 para N | Número de identificação da Ordem de Serviço. |
-| data_entrada| Datetime | Obrigatório | Momento exato em que o funcionário registra a entrada do veículo. |
-| data_saida | Datetime | Opcional | Momento de liberação do veículo (Regra: nenhum veículo é liberado sem o pagamento registrado). |
-| id_veiculo | Inteiro (FK) | 1 para 1 | Veículo que está passando pelo atendimento. |
-| id_funcionario| Inteiro (FK) | N para 1 | Funcionário responsável por registrar e acompanhar a ordem de serviço. |
-| status_os | Varchar(30) | Obrigatório | Estado atual (Ex: 'Em Andamento', 'Concluído', 'Aguardando Pagamento'). |
+| Atributo | Descrição | Regra de negócio associada |
+| :--- | :--- | :--- |
+| id_os | Número de identificação do atendimento / ordem de serviço | Obrigatório; chave primária para controle do fluxo de atendimento. |
+| data_entrada | Momento em que o funcionário registra a entrada do veículo | Obrigatório; gerado automaticamente no início do processo. |
+| data_saida | Momento de liberação do veículo | Obrigatório para encerramento; nenhum veículo pode ser liberado sem o pagamento registrado. |
+| id_veiculo | Identificador do veículo em atendimento | Obrigatório; vincula o atendimento ao automóvel correspondente. |
+| id_func | Identificador do funcionário responsável pelo registro | Obrigatório; somente funcionários autorizados podem abrir ou alterar ordens de serviço. |
+| status_os | Estado atual da ordem (Em andamento, Concluído, Pago) | Obrigatório; controla o fluxo operacional do pátio. |
 
 ### 5.5 Entidade: Funcionários
-| Atributo | Tipo de Dado | Cardinalidade | Descrição / Regra de Negócio |
-| :--- | :--- | :--- | :--- |
-| id_func | Inteiro (PK) | 1 para N | Identificador único do funcionário. |
-| nome | Varchar(100) | Obrigatório | Nome completo do colaborador. |
-| cargo | Varchar(50) | Obrigatório | Função exercida (ex: Gerente, Atendente, Lavador). |
-| nivel_acesso| Varchar(20) | Obrigatório | Define permissões (Ex: Somente funcionários autorizados/gerentes podem alterar ordens de serviço). |
+| Atributo | Descrição | Regra de negócio associada |
+| :--- | :--- | :--- |
+| id_func | Identificador único da pessoa que realiza os serviços | Obrigatório; chave primária do colaborador. |
+| nome | Nome completo do funcionário | Obrigatório; identificação pessoal na equipe de 3 funcionários. |
+| cargo | Função exercida na organização (Atendente, Gerente, etc.) | Obrigatório; define o nível de permissão e autorização no sistema. |
 
 ### 5.6 Entidade: Pagamento
-| Atributo | Tipo de Dado | Cardinalidade | Descrição / Regra de Negócio |
-| :--- | :--- | :--- | :--- |
-| id_pagamento| Inteiro (PK) | 1 para 1 | Identificador da transação financeira. |
-| id_os | Inteiro (FK) | 1 para 1 | Ordem de serviço vinculada ao pagamento. |
-| valor_total | Decimal(10,2)| Obrigatório | Valor cobrado somando os serviços executados e produtos utilizados. |
-| metodo | Varchar(30) | Obrigatório | Forma de pagamento utilizada (Pix, Crédito, Débito, Dinheiro). |
+| Atributo | Descrição | Regra de negócio associada |
+| :--- | :--- | :--- |
+| id_pagamento | Identificador único da transação financeira | Obrigatório; chave primária do pagamento. |
+| id_os | Identificador da ordem de serviço quitada | Obrigatório; vincula o pagamento diretamente ao atendimento realizado. |
+| valor_total | Valor total consolidado dos serviços e produtos utilizados | Obrigatório; base de cálculo do faturamento diário. |
+| metodo | Forma de pagamento utilizada (Pix, crédito, débito, dinheiro) | Obrigatório; restrito às formas aceitas pelo estabelecimento. |
 
----
-
-### Convenções, Fluxo de Dados e Governança (LGPD)
-
-* *Convenções de Nomenclatura:* Utilização de letras minúsculas separadas por underscore (snake_case) para tabelas e colunas; chaves primárias padronizadas como id_[entidade] e chaves estrangeiras como id_[entidade_referenciada].
-* *Expressão Formal, Tipos e Índices:* Utilização de padrões relacionais SQL (Integers para chaves, Varchar para textos, Decimal para valores financeiros e Datetime para controle de tempo). Índices criados nas chaves primárias e em campos de alta frequência de busca (como a placa do veículo e o cpf do cliente).
-* *Fluxo de Dados e Acesso por Operação:* O fluxo operacional começa com o cadastro do cliente e do veículo. Em seguida, o funcionário autorizado registra a entrada na Ordem de Serviço, vincula os serviços e produtos utilizados, e o ciclo se encerra obrigatoriamente na tabela de pagamento para a liberação da saída.
-* *Log de Acesso e LGPD:* O sistema mantém rastreabilidade das operações críticas por meio de níveis de acesso. Os dados sensíveis dos clientes (como CPF e telefone) atendem rigorosamente aos princípios da Lei Geral de Proteção de Dados (LGPD), garantindo sigilo corporativo e restrição contra vazamentos ou consultas indevidas.
+### 5.7 Entidade: Produto (Estoque)
+| Atributo | Descrição | Regra de negócio associada |
+| :--- | :--- | :--- |
+| id_produto | Identificador único do insumo ou material de venda | Obrigatório; chave primária do produto. |
+| nome_produto | Nome comercial do produto ou insumo utilizado | Obrigatório; especifica o material de limpeza ou acessório. |
+| quantidade | Quantidade disponível em estoque | Obrigatório; controlado para verificar se há insumo para utilização no serviço. |
 
 
 ## 6. Modelagem Conceitual 
