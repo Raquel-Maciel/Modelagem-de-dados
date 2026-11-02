@@ -46,11 +46,7 @@
 - **RO10** — *Registro de vendas: uma venda somente poderá ser concluída após o registro dos produtos, das quantidades e dos valores correspondentes.*
 - **RO11** — *Acesso ao sistema: operações de consulta, inclusão, alteração e exclusão somente poderão ser realizadas por usuários com as permissões necessárias.*
 - **RO12** — *Registro de ocorrências: danos ou irregularidades identificados durante o atendimento ou estacionamento deverão ser registrados antes do encerramento da ocorrência.*
-
-
-
-- **Regras operacionais: o funcionário deve registar a entrada e a saída do veículo – o sistema deve registar dada e horário de entrada e saída – somente funcionários autorizados podem alterar uma ordem de serviço – o estoque deve ser atualizado sempre que um produto for utilizado – o responsável deve conferir os dados do veículo antes de finalizar o atendimento – o sistema deve permitir consultar os atendimentos anteriores*
-
+ 
 - **Restrições organizacionais:** *somente funcionários terá acesso aos dados – os dados dos clientes devem ser mantidos em sigilo – o sistema deve seguir a politica interna de backup da empresa – determinadas alterações no cadastro só podem ser feitas pelo gerente de acesso .*
 
 ---
