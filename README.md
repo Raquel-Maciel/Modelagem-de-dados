@@ -47,7 +47,17 @@
 - **RO11** — *Acesso ao sistema: operações de consulta, inclusão, alteração e exclusão somente poderão ser realizadas por usuários com as permissões necessárias.*
 - **RO12** — *Registro de ocorrências: danos ou irregularidades identificados durante o atendimento ou estacionamento deverão ser registrados antes do encerramento da ocorrência.*
  
-- **Restrições organizacionais:** *somente funcionários terá acesso aos dados – os dados dos clientes devem ser mantidos em sigilo – o sistema deve seguir a politica interna de backup da empresa – determinadas alterações no cadastro só podem ser feitas pelo gerente de acesso .*
+- **Restrições organizacionais:** *As restrições organizacionais representam as políticas internas, limitações operacionais e exigências legais que influenciam o funcionamento do sistema e a estrutura do banco de dados.*
+- **REO01** — *Capacidade do estacionamento: a quantidade de veículos registrados como estacionados não poderá ultrapassar a capacidade física do estabelecimento. Essa restrição exige o controle das vagas disponíveis.*
+- **REO02** — *Horário de funcionamento: os agendamentos deverão respeitar os dias e horários de funcionamento definidos pela empresa. Essa restrição permite configurar os períodos em que o sistema pode aceitar agendamentos.*
+- **REO03** — *Política de preços: os serviços e o estacionamento deverão utilizar os preços e as tarifas aprovados pela empresa. Essa restrição evita cobranças indevidas e permite manter o histórico dos valores praticados.*
+- **REO04** — *Política de cancelamento: os cancelamentos, atrasos e eventuais cobranças deverão obedecer às condições estabelecidas pela empresa e informadas aos clientes. Essa restrição orienta o tratamento dos agendamentos e das cobranças.*
+- **REO05** — *Controle de estoque: o sistema deverá impedir que o estoque disponível fique negativo durante as operações normais. Essa restrição evita inconsistências no controle de produtos e insumos.*
+- **REO06** — *Controle de acesso: as informações administrativas, financeiras e cadastrais deverão ser acessadas conforme as funções e permissões dos funcionários. Essa restrição reduz o risco de alterações indevidas e vazamento de informações.*
+- **REO07** — *Proteção de dados pessoais: o tratamento dos dados dos clientes e funcionários deverá respeitar a Lei Geral de Proteção de Dados Pessoais (LGPD). Essa restrição exige controles de acesso, segurança, finalidade e retenção adequada das informações.*
+- **REO08** — *Obrigações fiscais: a emissão e o armazenamento de documentos fiscais deverão seguir as exigências legais aplicáveis à atividade da empresa. Essa restrição influencia os dados que precisam ser armazenados e os registros necessários para auditoria.*
+- **REO09** — *Rastreabilidade financeira: pagamentos e operações financeiras deverão manter registros suficientes para permitir conferências e auditorias. Essa restrição dificulta a perda do histórico e facilita a identificação de divergências.*
+- **REO10** — *Limitações técnicas: o banco de dados deverá utilizar tipos de dados, chaves e restrições de integridade compatíveis com o sistema adotado. Essa restrição evita inconsistências e garante a confiabilidade das informações.*
 
 ---
 
