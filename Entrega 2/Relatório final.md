@@ -125,10 +125,77 @@ Requisitos Não Funcionais: características de qualidade (ex.: desempenho, segu
 Levante os requisitos típicos do tipo de organização. Assim como nos processos, é recomendável usar pesquisas e ferramentas de IA para descobrir quais requisitos funcionais e não funcionais são comuns em sistemas de organizações semelhantes e conferir se eles se aplicam à organização escolhida — o que pode exigir confirmação com o responsável. Registre esse uso de IA na seção 6.
 Justifique os requisitos prováveis não incluídos: se um requisito comum nesse tipo de organização ficou de fora, explique por quê (ex.: a organização não realiza o processo correspondente, ou a necessidade não existe no porte dela).
 Na Entrega 1, os erros mais comuns foram: requisitos de um sistema diferente do que foi mapeado (ex.: cardápio por QR Code ou motor de recomendação, quando o processo real é o garçom anotar o pedido), problemas declarados sem nenhum requisito que os resolva e requisitos técnicos (autenticação por JWT, hospedagem em nuvem) listados como funcionais. Os requisitos devem corresponder aos processos de negócio descritos acima e cobrir todos os problemas declarados (P1, P2…).
-Regras de negócio (todos os grupos)
-Liste as regras de negócio vigentes, cada uma com um código (RN01, RN02…) — mantenha os códigos da Entrega 1 quando já existirem. Esses códigos são citados nas justificativas das restrições (seção 1.5) e nas consultas de auditoria do script SQL (seção 3).
-Levante as regras típicas do tipo de organização. Assim como nos processos e nos requisitos, é recomendável usar pesquisas e ferramentas de IA para descobrir quais regras são comuns em organizações semelhantes e conferir se elas valem na organização escolhida — o que pode exigir confirmação com o responsável. Considere tanto as regras operacionais (ex.: pedido só é entregue se estiver registrado; cancelamento fica no histórico, não é apagado) quanto as restrições legais e organizacionais (ex.: LGPD, emissão de nota fiscal, normas sanitárias, idade mínima, acesso por cargo). Registre esse uso de IA na seção 6.
-Justifique as regras prováveis não incluídas: se uma regra comum nesse tipo de organização ficou de fora, explique por quê (ex.: a organização não realiza o processo correspondente, ou a regra não se aplica ao porte ou à natureza dela).
+
+**1 - Regras de negócio com códigos RN01, RN02...**
+**2 -Regras operacionais com códigos RO01, RO02...**
+**3 - Restrições legais e organizacionais com códigos REO01, REO02...**
+**4 - Justificativa das regras comuns que não foram incluídas.**
+
+**8. Regras de Negócio**
+As regras de negócio representam as condições e políticas que orientam o funcionamento da Garagem Salles Estúdio Automotivo. Elas estabelecem os critérios que devem ser respeitados nos processos de cadastro, agendamento, atendimento, estacionamento, pagamentos e controle de estoque.
+**8.1. Regras de negócio vigentes**
+**Código Regra de negócio**
+**RN01** Todo cliente deverá possuir um identificador único no sistema.
+**RN02** Todo veículo deverá estar vinculado a um cliente cadastrado, e sua placa não poderá estar duplicada.
+**RN03** Todo agendamento deverá estar associado a um cliente, a um veículo e aos serviços solicitados.
+**RN04** Os agendamentos deverão respeitar a disponibilidade de horários e a capacidade de atendimento.
+**RN05** Cancelamentos e alterações de agendamentos deverão manter um histórico no sistema.
+**RN06** Os serviços executados deverão corresponder aos serviços solicitados e autorizados pelo cliente.
+**RN07** Cada atendimento deverá possuir informações que permitam identificar os serviços realizados e os responsáveis.
+**RN08** Toda entrada e saída de veículos do estacionamento deverá ser registrada.
+**RN09** O valor do estacionamento deverá seguir a tabela de tarifas estabelecida pela empresa.
+**RN10** A quantidade de veículos estacionados não poderá ultrapassar a capacidade física do estacionamento.
+**RN11**Todo pagamento deverá possuir registro de valor, data, forma de pagamento e situação.
+**RN12** As operações que exigirem documentação fiscal deverão respeitar as obrigações legais aplicáveis.
+**RN13** Toda entrada e saída de produtos deverá ser registrada no controle de estoque.
+**RN14** Toda venda de produtos deverá registrar os itens, as quantidades e os valores correspondentes.
+**RN15** Cada funcionário deverá possuir identificação individual no sistema.
+**RN16** O acesso às informações deverá respeitar as permissões atribuídas a cada funcionário.
+**RN17** Danos, reclamações e irregularidades deverão possuir registros para consulta e acompanhamento.
+**RN18** Os dados pessoais de clientes e funcionários deverão ser protegidos conforme a LGPD.
+**RN19** Os registros financeiros e operacionais deverão manter histórico para possibilitar consultas e auditorias.
+**8.2. Regras operacionais**
+As regras operacionais representam as condições que a organização impõe para que determinadas operações possam ser realizadas. Elas definem o que precisa acontecer antes de uma operação ser autorizada ou concluída.
+**Código Regra operacional**
+**RO01** Um agendamento somente poderá ser confirmado se houver horário disponível na agenda da empresa.
+**RO02** Um agendamento somente poderá ser realizado quando o cliente e o veículo estiverem identificados no sistema.
+**RO03** Um serviço somente poderá ser iniciado após a confirmação dos serviços solicitados pelo cliente.
+**RO04** Um veículo somente poderá entrar no estacionamento se houver vaga disponível.
+**RO05** A saída de um veículo deverá possuir registro do horário de entrada e do horário de saída.
+**RO06** A liberação do veículo deverá ocorrer após a confirmação do pagamento, salvo autorização excepcional registrada.
+**RO07** Um pagamento somente poderá ser considerado concluído após a confirmação da transação.
+**RO08** A retirada de um produto do estoque somente poderá ocorrer se houver quantidade disponível, exceto em ajustes autorizados.
+**RO09** Uma venda somente poderá ser finalizada após o registro dos produtos, quantidades e valores.
+**RO10** Um cancelamento deverá ser registrado no histórico, não podendo simplesmente apagar o agendamento original.
+**RO11** Uma alteração de cadastro somente poderá ser realizada por um usuário autorizado.
+**RO12** Uma ocorrência envolvendo danos ou irregularidades deverá ser registrada para permitir sua análise e acompanhamento.
+**8.3. Restrições legais e organizacionais**
+As restrições legais e organizacionais representam as limitações impostas por leis, normas, políticas internas e condições de funcionamento da empresa. Elas influenciam diretamente a estrutura do banco de dados e as permissões do sistema.
+Código Restrição Por que é importante?
+**REO01 LGPD** — Lei nº 13.709/2018. Garante a proteção dos dados pessoais dos clientes e funcionários, exigindo segurança e controle de acesso.
+**REO02** Capacidade física do estacionamento. Impede o registro de veículos acima da quantidade de vagas disponíveis.
+**REO03** Horário de funcionamento da empresa. Evita agendamentos fora dos períodos autorizados de atendimento.
+**REO04** Política interna de preços e tarifas. Garante que os valores cobrados sigam os preços estabelecidos pela administração.
+**REO05** Política de cancelamento e atrasos. Padroniza os procedimentos e evita cobranças ou decisões indevidas.
+**REO06** Controle de acesso por cargo. Impede que funcionários realizem operações que não fazem parte de suas responsabilidades.
+**REO07** Obrigações fiscais. Garante que os documentos fiscais sejam emitidos e armazenados conforme as exigências legais aplicáveis.
+**REO08** Controle de estoque. Evita inconsistências e movimentações incompatíveis com a quantidade disponível de produtos.
+**REO09** Segurança e rastreabilidade financeira. Permite identificar pagamentos, alterações e responsáveis pelas operações.
+**REO10** Políticas internas de armazenamento de informações. Estabelece critérios para manutenção, consulta e descarte dos registros da empresa.
+
+As políticas comerciais e internas acima devem ser confirmadas com o responsável pela empresa. As exigências legais devem ser aplicadas conforme a atividade e a operação correspondente.
+
+**8.4. Justificativa das regras prováveis não incluídas**
+Algumas regras são comuns em organizações do setor automotivo, mas não foram incluídas porque não fazem necessariamente parte dos processos identificados para a Garagem Salles Estúdio Automotivo.
+**Regra não incluída Justificativa**
+**Venda de veículos** A organização tem como foco serviços automotivos e estacionamento, não sendo necessariamente uma concessionária ou revendedora.
+**Financiamento de veículos** Não foi identificado um processo de concessão ou intermediação de crédito para compra de veículos.
+**Doações** Não fazem parte das atividades comerciais e operacionais da empresa.
+**Agendamento de rituais ou eventos** Não se aplica à natureza dos serviços oferecidos pela organização.
+**Controle de idade mínima** Não foi identificada uma atividade que exija idade mínima específica para contratação dos serviços.
+**Normas sanitárias de alimentos** Não foram incluídas porque o escopo não contempla produção ou comercialização de alimentos.
+**Planos mensais de estacionamento** Não foram considerados obrigatórios porque sua existência depende da confirmação de que a empresa oferece essa modalidade.
+
 Notação do DER conceitual (todos os grupos — Caso A e Caso B)
 O DER deve seguir a notação do brModelo, como no exemplo abaixo:
 
