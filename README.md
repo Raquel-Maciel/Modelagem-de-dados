@@ -189,22 +189,27 @@ Dessa forma, o modelo conceitual busca representar fielmente os processos da emp
 
 ## 9. Uso de Inteligência Artificial
 
+### 1. Visão Geral do Uso de IA
+* **Ferramenta utilizada:** ChatGPT (OpenAI).
+* **Objetivo / Motivação:** Auxiliar na compreensão dos conceitos de modelagem de banco de dados e orientar a construção do Diagrama Entidade-Relacionamento (DER), considerando as regras de negócio e as informações obtidas na pesquisa de campo da empresa Garagem Salles.
 
-| Item | O que registrar |
-|------|------------------|
-| **ChatGPT** | A ferramenta ChatGPT foi utilizada como apoio no desenvolvimento do Modelo Conceitual de Banco de Dados da Garagem Salles. A inteligência artificial auxiliou na compreensão da plataforma ou Modelo, na identificação de entidades e atributos e na elaboração dos relacionamentos e cardinalidades. As orientações foram utilizadas como referência para a construção do DER, considerando as informações levantadas na pesquisa de campo realizada pelo grupo. |
-| **Motivação** | Auxiliar na compreensão dos conceitos de modelagem de banco de dados e orientar a construção do Diagrama Entidade-Relacionamento, considerando as informações obtidas na pesquisa de campo. |
-| **Prompt(s) utilizados** | 1. Com base no fluxograma da empresa e nas informações obtidas na pesquisa de campo, auxilie na identificação das entidades e atributos necessários para a elaboração do Diagrama Entidade-Relacionamento (DER).”
-2. “Explique detalhadamente como utilizar a ferramenta ou Modelo para desenvolver o modelo conceitual de banco de dados.”
-3. “Apresente orientações passo a passo para a criação das entidades, atributos identificadores, relacionamentos e cardinalidades.”
-4. “Gere representações visuais do modelo para facilitar a compreensão e a organização das entidades e seus respectivos atributos.”
-5. “Auxilie na definição dos relacionamentos e das cardinalidades, considerando as regras de negócio e os processos operacionais da empresa.”
-6. “Analise o Diagrama Entidade-Relacionamento desenvolvido e identifique possíveis inconsistências, sugerindo correções para melhorar a estrutura do modelo.”|
-| **Resposta recebida** | O ChatGPT forneceu orientações sobre a utilização da ferramenta Modelo e auxiliou na construção do Diagrama Entidade-Relacionamento (DER) da empresa Garagem Salles. A partir das informações coletadas na pesquisa de campo, foram sugeridas entidades como Cliente, Veículo, Serviço, Agendamento, Estacionamento e Pagamento, com seus respectivos atributos e identificadores.
-A ferramenta também apresentou explicações sobre relacionamentos e cardinalidades, além de gerar representações visuais para facilitar a compreensão e a organização do modelo. Durante o desenvolvimento, foram analisadas imagens do diagrama elaborado pelo grupo, permitindo identificar inconsistências e sugerir ajustes na estrutura dos relacionamentos.
-O auxílio da IA contribuiu para a compreensão dos conceitos de modelagem de banco de dados e para a aplicação prática dos conhecimentos adquiridos em sala de aula.. |
-| **Justificativa da escolha final** | Por que o grupo manteve, adaptou ou rejeitou o que a IA sugeriu. |
-| **Reflexão crítica** | Limites, vieses ou erros identificados no uso da IA nessa etapa (ex.: informação desatualizada, alucinação, generalização incorreta sobre o tipo de organização). |
+---
+
+### 2. Detalhamento dos Prompts, Respostas e Análises
+
+| Item / Prompt | Resposta Recebida | Justificativa da Escolha Final | Reflexão Crítica |
+| :--- | :--- | :--- | :--- |
+| **Prompt 1:**<br>_"Com base no fluxograma da empresa e nas informações obtidas na pesquisa de campo, auxilie na identificação das entidades e atributos necessários para a elaboração do Diagrama Entidade-Relacionamento (DER)._ | O ChatGPT sugeriu entidades centrais como `Cliente`, `Veículo`, `Serviço`, `Agendamento`, `Estacionamento` e `Pagamento`, detalhando os atributos e chaves primárias de cada uma. | O grupo acolheu a sugestão das entidades principais por estarem em perfeita harmonia com o fluxo operacional real coletado na pesquisa de campo. | **Limites / Vieses:** A IA tendeu a propor um modelo genérico de oficinas mecânicas/lava-rápidos; foi necessário filtrar e adaptar as entidades para o escopo específico da Garagem Salles. |
+| **Prompt 2:**<br>_"Explique detalhadamente como utilizar a ferramenta ou Modelo para desenvolver o modelo conceitual de banco de dados."_ | A ferramenta forneceu um guia teórico sobre as etapas do Modelo Conceitual (abstração de dados, identificação de regras de negócio e tradução para o DER). | Utilizado como referência de estudo e alinhamento conceitual para a equipe antes de iniciar o desenho técnico. | **Limites / Vieses:** Explicação de caráter muito teórico, exigindo que o grupo fizesse a ponte prática com as ferramentas de modelagem utilizadas nas aulas. |
+| **Prompt 3:**<br>_"Apresente orientações passo a passo para a criação das entidades, atributos identificadores, relacionamentos e cardinalidades."_ | Forneceu um roteiro estruturado definindo a sequência lógica: mapeamento de substantivos (entidades), verbos (relacionamentos) e propriedades (atributos). | O passo a passo foi seguido pelo grupo para organizar a ordem de estruturação do diagrama conceitual, garantindo boas práticas de normalização. | **Limites / Vieses:** O método padrão da IA nem sempre prioriza as particularidades da ferramenta gráfica escolhida pelo grupo, servindo mais como um roteiro conceitual. |
+| **Prompt 4:**<br>_"Gere representações visuais do modelo para facilitar a compreensão e a organização das entidades e seus respectivos atributos."_ | O modelo gerou representações em formato textual estruturado (esquemas relacionais e diagramas em Mermaid/ASCII) para ilustrar a estrutura. | Serviu como um esboço preliminar rápido antes da prototipagem final do DER na ferramenta oficial do projeto. | **Limites / Vieses:** As representações visuais em texto são limitadas para projetos complexos, exigindo validação humana e redesenho em software de diagramação dedicado. |
+| **Prompt 5:**<br>_"Auxilie na definição dos relacionamentos e das cardinalidades, considerando as regras de negócio e os processos operacionais da empresa."_ | Ajudou a esclarecer cardinalidades complexas, como a relação 1 para N entre `Cliente` e `Veículo`, e N para N entre `Agendamento` e `Serviço`. | As orientações de cardinalidade foram adotadas integralmente após validação cruzada com o fluxo de atendimento da Garagem Salles. | **Limites / Vieses:** A IA não possui visão empírica do negócio; regras específicas de exceção da empresa precisaram ser ajustadas manualmente pelo grupo. |
+| **Prompt 6:**<br>_"Analise o Diagrama Entidade-Relacionamento desenvolvido e identifique possíveis inconsistências, sugerindo correções para melhorar a estrutura do modelo."_ | A análise apontou pontos de melhoria, como a necessidade de tabelas associativas para resolver relacionamentos de muitos para muitos (N:N). | O grupo acatou a sugestão de refatoração estrutural para evitar redundâncias de dados e garantir a integridade referencial do banco. | **Limites / Vieses:** A validação lógica da IA é sintática e estrutural; ela não substitui a revisão crítica do professor ou a validação com o cliente real. |
+
+---
+
+### 3. Considerações Finais
+O suporte da inteligência artificial foi fundamental para otimizar o tempo de pesquisa, validar conceitos teóricos aprendidos em sala de aula e estruturar de forma mais limpa o DER da **Garagem Salles**. No entanto, todo o processo de tomada de decisão, refinamento e adequação final coube inteiramente ao grupo, garantindo a originalidade e a fidelidade do projeto à realidade da empresa.
 
 
 ---
