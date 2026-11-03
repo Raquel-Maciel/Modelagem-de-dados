@@ -266,12 +266,17 @@ Além de todos os itens acima, apresente o DER conceitual da nova organização,
 Use a correção da Entrega 1 do grupo como guia dos erros a não repetir, mesmo sendo outra organização.
 
 1.2 Conversão do Modelo Conceitual para o Modelo Lógico
-(vale 7,5%)
-Entidades → Tabelas: como cada entidade virou tabela.
-Atributos → Colunas: conversão correta dos atributos.
-Relacionamentos → Chaves: como os relacionamentos foram traduzidos.
-Cardinalidades: como cada cardinalidade (1:1, 1:N, N:N) foi tratada (inclusive tabelas associativas, se houver).
-Generalização/especialização: se o DER tiver, qual estratégia de conversão foi usada (tabela única, uma tabela por entidade ou só as especializadas) e por quê.  
+A conversão do modelo conceitual para o modelo lógico foi realizada com base no DER revisado da Garagem Salles Estúdio Automotivo. Nesse processo, as entidades identificadas foram transformadas em tabelas relacionais, seus atributos passaram a representar as colunas e os relacionamentos foram convertidos em chaves estrangeiras ou tabelas associativas, de acordo com suas cardinalidades.
+
+As entidades CLIENTE, VEÍCULO, AGENDAMENTO, SERVIÇO, ESTADIA, PAGAMENTO, PRODUTO e CUPOM FISCAL foram consideradas na estrutura do banco de dados.
+
+As chaves primárias (PK) foram utilizadas para identificar cada registro de forma única, enquanto as chaves estrangeiras (FK) estabelecem as relações entre as tabelas.
+
+Nos relacionamentos de um para muitos (1:N), a chave estrangeira foi posicionada na tabela correspondente ao lado N. Nos relacionamentos de muitos para muitos (N:N), foi considerada a utilização de tabelas associativas para representar as relações.
+
+Também foi considerada a especialização de PRODUTO em SERVIÇO e ESTADIA, mantendo a estrutura definida no modelo conceitual.
+
+Dessa forma, o modelo lógico representa a organização dos dados e os relacionamentos do sistema, servindo como base para a implementação do banco de dados em SQL. 
 
 
 1.3 Definição de Chaves Primárias e Estrangeiras
@@ -329,39 +334,15 @@ O que é KPI: Key Performance Indicator (indicador-chave de desempenho) é um n�
 Como levantar: é recomendável usar pesquisas e ferramentas de IA para descobrir quais indicadores são usados por organizações do mesmo tipo (ex.: "principais KPIs de uma pizzaria", "indicadores de gestão de uma ONG de doação de alimentos") e quais análises de BI e de IA costumam ser aplicadas a elas. Depois, filtre pelo que o seu banco consegue calcular: um KPI só vale se as tabelas do modelo tiverem os dados necessários e se houver uma consulta no script que o calcule (ver Rastreabilidade, abaixo). Se possível, confirme com o responsável pela organização quais indicadores seriam úteis para ele. Registre esse uso de IA na seção 6.
 
 2. Modelo Lógico Relacional
-(diagrama separado — vale 10% na Dimensão Procedimental)
-O modelo lógico deve seguir a notação visual do brModelo para o modelo lógico, como no exemplo abaixo. Informe no README em qual software ou aplicativo ele foi criado.
+O modelo lógico relacional apresenta a estrutura das tabelas que compõem o banco de dados da Garagem Salles Estúdio Automotivo, especificando seus atributos, tipos de dados, chaves primárias (PK) e chaves estrangeiras (FK).
 
-Elemento
-Como aparece
-No exemplo
-Tabela
-retângulo com o nome da tabela no topo e uma linha por coluna
-Entity 1, Entity 5
-Coluna
-nome da coluna, à esquerda, com o tipo de dado à direita
-Attribute 30 — INT
-Chave primária
-marca PK ao lado do tipo
-Chave 1, em Entity 1; Chave 50 + Chave 51, em Entity 5 (chave primária composta)
-Chave estrangeira
-marca FK ao lado do tipo
-Chave 3, em Entity 4
-Coluna que é chave primária e estrangeira
-marcas PK, FK
-Chave 1, em Entity 2
-Ligação entre tabelas
-linha entre a tabela da FK e a tabela referenciada, com a cardinalidade (mín, máx) em cada ponta
-Entity 3 — Entity 4: (1, 1) e (0, n)
+O diagrama foi desenvolvido utilizando o brModelo Web, com base no modelo conceitual revisado na etapa anterior.
 
+Diagrama do Modelo Lógico Relacional:
 
-Deve apresentar claramente:
-Tabelas
-Atributos (colunas), com seus tipos de dados
-Chaves primárias
-Chaves estrangeiras
-Cardinalidades já convertidas
-As demais restrições de integridade — obrigatoriedade (NOT NULL), unicidade (UNIQUE), valores permitidos (CHECK), valores padrão (DEFAULT) — não aparecem no diagrama do brModelo e devem ser documentadas no dicionário de dados (seção 5) e implementadas no script SQL (seção 3).
+[https://github.com/Raquel-Maciel/Modelagem-de-dados/blob/main/Entrega%202/Modelo_L%C3%B3gico_Garagem_Salles.pdf](https://github.com/Raquel-Maciel/Modelagem-de-dados/blob/main/Entrega%202/Modelo_L%C3%B3gico_Garagem_Salles.pdf)
+
+O modelo demonstra como os dados serão organizados e relacionados no banco de dados, servindo como referência para a implementação por meio de comandos SQL.
 
 3. Script SQL Completo
 (arquivo .sql — vale 12% na Dimensão Procedimental)
