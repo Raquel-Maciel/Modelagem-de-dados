@@ -176,19 +176,24 @@ Atributos de relacionamentos e de entidades associativas: somente como no brMode
 Sem chaves estrangeiras — elas só aparecem no modelo lógico (seção 2).
 Informe no README em qual software ou aplicativo o DER foi criado.
 Caso A — mesma organização da Entrega 1
-Apresente o DER conceitual revisado, na notação descrita acima. A revisão parte da correção da Entrega 1 recebida pelo grupo — o DER e os demais itens acima. Para cada apontamento da correção, registre o que foi feito:
-Apontamento da correção da E1
-O que mudou no trabalho
-Por quê
-ex.: N:N entre PEDIDO e PRODUTO sem quantidade
-criada a entidade associativa ITEM_PEDIDO com quantidade e preço praticado
-sem ela não é possível saber quanto de cada produto foi vendido
-ex.: chaves estrangeiras desenhadas no DER
-removidas — passam a aparecer só no modelo lógico (seção 2)
-FK é decisão do modelo lógico, não do conceitual
+### Caso A — mesma organização da Entrega 1
 
+A organização escolhida pelo grupo permanece a mesma da Entrega 1: Garagem Salles Estúdio Automotivo. O modelo conceitual foi revisado durante a elaboração da Entrega 2, com ajustes na estrutura, nos relacionamentos e nas cardinalidades, além da inclusão de novos elementos para representar melhor as atividades da garagem.
 
-Se o grupo discordar de algum apontamento e mantiver o modelo como estava, registre isso na tabela com a justificativa. Apontamento não citado na tabela é tratado como não corrigido.
+**Software utilizado:** brModelo Web.
+
+**DER conceitual revisado:** [Visualizar o PDF do DER — Estacionamento](https://github.com/Raquel-Maciel/entrega-2---modelagem-de-dados/blob/main/DER_Estacionamento.pdf)
+
+| Apontamento da correção da E1 | O que mudou no trabalho | Por quê |
+|---|---|---|
+| Revisão do relacionamento entre cliente e veículo | O relacionamento `possui` teve suas cardinalidades revisadas. | Ajustar a representação da associação entre clientes e veículos conforme a revisão do modelo. |
+| Revisão do relacionamento entre agendamentos e serviços | As cardinalidades do relacionamento `inclui` foram revisadas. | Melhorar a representação da relação entre os agendamentos e os serviços. |
+| Revisão da representação de pagamentos e comprovantes | Os relacionamentos `gera` foram removidos, e foi incluído o relacionamento `comprova` entre cupom fiscal e pagamento. | Reorganizar a representação dos pagamentos e dos respectivos comprovantes no modelo. |
+| Inclusão de novos elementos | Foram adicionadas as entidades `produto` e `cupom fiscal`, o relacionamento `compõe` e a especialização envolvendo `produto`, `serviço` e `estadia`. | Ampliar a representação das informações relacionadas aos produtos, serviços, estadias e comprovantes. |
+| Revisão da entidade de estacionamento | A entidade `estacionamento` passou a ser denominada `estadia`. | Atualizar a nomenclatura utilizada no modelo conceitual. |
+| Reorganização visual do diagrama | Os elementos do DER foram reposicionados. | Melhorar a organização visual e a leitura do diagrama. |
+
+As alterações foram registradas com base na comparação entre as versões da Entrega 1 e da Entrega 2. As justificativas apresentam os objetivos gerais das mudanças realizadas durante a revisão.
 Caso B — nova organização (a da Entrega 1 era fictícia ou não teve a existência comprovada)
 Além de todos os itens acima, apresente o DER conceitual da nova organização, na notação descrita acima.
 Use a correção da Entrega 1 do grupo como guia dos erros a não repetir, mesmo sendo outra organização.
