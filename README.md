@@ -208,12 +208,26 @@ Dessa forma, o modelo conceitual busca representar fielmente os processos da emp
 
 ---
 
-### 3. Considerações Finais
-O suporte da inteligência artificial foi fundamental para otimizar o tempo de pesquisa, validar conceitos teóricos aprendidos em sala de aula e estruturar de forma mais limpa o DER da **Garagem Salles**. No entanto, todo o processo de tomada de decisão, refinamento e adequação final coube inteiramente ao grupo, garantindo a originalidade e a fidelidade do projeto à realidade da empresa.
+### 3. Aprofundamento Metodológico e Governança no Uso da IA
 
+A integração da inteligência artificial no desenvolvimento do projeto **Garagem Salles** seguiu uma abordagem de **co-criação supervisionada**. A IA não atuou como um agente autônomo de decisão, mas sim como um copiloto técnico e analítico para acelerar o levantamento de requisitos, validar conceitos de modelagem e desafiar a arquitetura proposta pelo grupo.
 
----
+#### 3.1. Processo de Engenharia de Prompt e Iteração
+O relacionamento com a ferramenta de IA baseou-se em ciclos iterativos de refinamento (feedback loops):
+1. **Contextualização Prévia:** Em vez de solicitar soluções genéricas, os prompts iniciais sempre alimentavam a IA com o contexto específico da pesquisa de campo (ex.: fluxo de atendimento de veículos, registro de avarias e controle de pátio da Garagem Salles).
+2. **Decomposição de Problemas:** O problema complexo de modelagem foi fatiado em etapas menores: primeiro a identificação de substantivos (entidades), depois a definição de propriedades (atributos) e, por fim, a lógica relacional (cardinalidades).
+3. **Validação Cruzada e Refatoração:** Após a geração inicial do Diagrama Entidade-Relacionamento (DER), o grupo submetia o modelo resultante a uma nova rodada de análise crítica com a IA para detectar possíveis gargalos de normalização, redundâncias ou violações de integridade referencial.
 
+#### 3.2. Vantagens Operacionais Observadas
+* **Ganho de Produtividade:** Redução significativa no tempo gasto para estruturar o dicionário de dados inicial e padronizar a nomenclatura das chaves primárias e estrangeiras.
+* **Alinhamento Conceitual:** Funcionou como um mecanismo de nivelamento técnico para a equipe, facilitando a tradução de regras de negócio abstratas em artefatos formais de banco de dados.
+* **Identificação Precoce de Inconsistências:** A simulação de cenários de relacionamento (como a gestão de múltiplos serviços atrelados a um único agendamento) permitiu antecipar a necessidade de tabelas associativas antes da implementação no SGBD.
+
+#### 3.3. Limitações, Vieses e Cuidados Críticos (Análise Crítica)
+O grupo adotou uma postura de **ceticismo construtivo** diante das respostas fornecidas pela ferramenta, destacando os seguintes pontos de atenção:
+* **Geração de Padrões Genéricos:** A IA tende a sugerir estruturas voltadas a grandes oficinas tradicionais ou concessionárias, o que exigiu do grupo a filtragem constante para manter o foco exclusivo no modelo operacional enxuto da Garagem Salles.
+* **Ausência de Contexto Empírico:** A IA não possui percepção do ambiente real de trabalho ou das restrições físicas do espaço do cliente. Regras de exceção específicas do negócio dependeram inteiramente do julgamento humano do grupo.
+* **Validação Lógica Humana:** Todas as sugestões de cardinalidade e restrições de integridade foram rigorosamente auditadas pela equipe e validadas com base na teoria de banco de dados ministrada em sala de aula, garantindo que o artefato final fosse academicamente correto e funcionalmente viável.
 
 **Entrega final:** README.md completo + DER + Dicionário de Dados em HTML (com exceção dos cursos GTI) anexado no repositório GitHub do grupo.
 
