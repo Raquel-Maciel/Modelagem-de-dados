@@ -6,10 +6,10 @@
 | Nome completo | RGM | Usuário GitHub |
 |---|---|---|
 | Raquel de Araujo Maciel Silva | RGM 49040120 | Raquel-Maciel |
-| Isabel de Araujo Ferreira Maciel | RGM 49038940 | [usuario] |
-| Luiz Alencar Silva Feitosa | RGM 49633996 | [usuario] |
-| Vinicius Rodrigues de Brito | RGM 49475428 | [usuario] |
-| Gabriel de Araujo Ferreira Maciel | RGM 49038796 | [usuario] |
+| Isabel de Araujo Ferreira Maciel | RGM 49038940 | isabell426 |
+| Luiz Alencar Silva Feitosa | RGM 49633996 | luizalencar08 |
+| Vinicius Rodrigues de Brito | RGM 49475428 | Vini-vn |
+| Gabriel de Araujo Ferreira Maciel | RGM 49038796 | gabrielmaciel1005 |
 
 ---
 
