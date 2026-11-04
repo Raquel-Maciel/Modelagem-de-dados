@@ -225,6 +225,3 @@ O repositório oficial do grupo reúne todos os artefatos exigidos (Relatório n
 | **Reflexão crítica** | A IA acelerou a estruturação sintática, mas a validação humana foi indispensável para evitar falhas de cardinalidade e assegurar o alinhamento com a realidade da garagem. |
 
 ---
-
-# 7. Apresentação Corporativa Final (Pitch)
-Preparada nos moldes exigidos (slides limpos e minimalistas), estruturada em 7 etapas cronometradas (Contextualização, Solução, Modelo Lógico, Implementação SQL, Demonstração de Consultas, Potencial de BI/IA e Benefícios para a Gestão), com a participação integral da equipe para a defesa técnica perante a banca.
