@@ -1,461 +1,230 @@
 # Entrega 2 — Modelo Lógico, Implementação SQL e Apresentação Final
 ## Projeto: Sistema de Gestão da Garagem Salles Estúdio Automotivo
 
-
 ## Integrantes
 
 | Nome completo | RGM | Usuário GitHub |
 |---|---|---|
-| Raquel de Araujo Maciel Silva | RGM 49040120 | [usuário] |
-| Isabel de Araujo Ferreira Maciel| RGM 49038940| [usuário] |
-| Luiz Alencar Silva Feitosa | RGM 49633996 | [usuário] |
-| Vinicius Rodrigues de Brito | RGM 49475428 | [usuário] |
-| Gabriel de Araujo Ferreira Maciel | RGM 49038796 | [usuário] |
+| Raquel de Araujo Maciel Silva | RGM 49040120 | Raquel-Maciel |
+| Isabel de Araujo Ferreira Maciel | RGM 49038940 | [usuario] |
+| Luiz Alencar Silva Feitosa | RGM 49633996 | [usuario] |
+| Vinicius Rodrigues de Brito | RGM 49475428 | [usuario] |
+| Gabriel de Araujo Ferreira Maciel | RGM 49038796 | [usuario] |
 
+---
 
 # 1. Relatório Técnico Final
 
 ## 1.1 Revisão do Modelo Conceitual
 
-### Caracterização da organização
+### Caracterização da Organização
+* **Nome:** Garagem Salles Estúdio Automotivo.  
+* **Natureza:** Empresa privada do segmento de serviços automotivos de pequeno porte.  
+* **Contexto e Porte:** Estabelecimento com 3 funcionários, atendendo aproximadamente 10 veículos por dia (~300 atendimentos mensais). Atua com serviços de estética automotiva, lavagem e estacionamento, utilizando insumos da linha Vonixx e comercializando produtos acessórios com acréscimo de 30% sobre o custo de aquisição.  
 
-**Nome:** Garagem Salles Estúdio Automotivo.  
-**Natureza:** empresa privada do segmento de serviços automotivos de pequeno porte.
+### Problemas e Necessidades Identificados
+* **P1 — Cadastro e histórico:** Necessidade de centralizar os dados de clientes e veículos e consultar o histórico de atendimentos.
+* **P2 — Acompanhamento dos serviços:** Necessidade de acompanhar os serviços solicitados, seus itens, valores, responsáveis e situação.
+* **P3 — Estacionamento:** Necessidade de registrar entrada, permanência e saída dos veículos, além dos valores cobrados quando aplicável.
+* **P4 — Controle financeiro:** A empresa não realiza fechamento formal de caixa, dificultando a conferência consolidada dos recebimentos e do faturamento.
+* **P5 — Estoque:** A empresa não possui controle formal de estoque; portanto, não acompanha de forma centralizada as entradas, o consumo interno, as vendas e os saldos disponíveis dos produtos.
+* **P6 — Compras e reposição:** Necessidade de registrar compras de produtos e insumos, incluindo itens da linha Vonixx, para conhecer custos, quantidades e datas de aquisição.
+* **P7 — Relatórios gerenciais:** Necessidade de reunir dados para analisar quantidade de atendimentos, serviços mais solicitados, vendas, faturamento, movimentação de produtos e desempenho operacional.
 
-**Equipe:** 3 funcionários.  
-**Volume aproximado:** 10 veículos atendidos por dia.  
-**Endereço informado:** Rua Campo da Vinha, 517, Jardim Santa Terezinha, São Paulo – SP, 03572-090.  
-**Responsável:** Leonardo Sales.  
-**Telefone:** (11)95291-3828.  
-**Perfil divulgado:** (https://www.instagram.com/salles.lavagens).
+### Escopo do Sistema
+O sistema proposto abrangerá os principais dados operacionais e administrativos da organização: clientes, veículos, funcionários, agendamentos, ordens de serviço, serviços, estacionamento, pagamentos, fornecedores, compras, produtos, consumo de produtos nos serviços, vendas de produtos e movimentações de estoque.
 
-A Garagem Salles Estúdio Automotivo atua com serviços de estacionamento, lavagem e estética automotiva. A operação envolve o recebimento de veículos, identificação do cliente e do automóvel, registro dos serviços solicitados, execução dos serviços, utilização de produtos e insumos, recebimento de pagamentos e liberação do veículo.
+### Justificativa da Escolha
+A organização foi escolhida por representar uma operação real de pequeno porte com processos de atendimento, serviços automotivos, estacionamento, compras e comercialização de produtos. O volume de cerca de dez veículos por dia permite estudar um cenário realista de cadastro, execução de serviços e movimentações financeiras e de materiais. Destaca-se também o vínculo familiar com a administração, garantindo acesso irrestrito para pesquisa de campo.
 
-A empresa possui três funcionários e atende aproximadamente dez veículos por dia. Para a realização dos serviços, utiliza produtos e insumos da linha Vonixx. Também comercializa produtos utilizados em suas atividades, aplicando, conforme informação fornecida, acréscimo de 30% sobre o custo de aquisição para formação do preço de venda.
+### Evidências da Organização
+* **Perfil oficial:** [Instagram da Garagem Salles](https://www.instagram.com/salles.lavagens)
+* **Endereço completo:** Rua Campo da Vinha, 517, Jardim Santa Terezinha, São Paulo – SP, 03572-090.
+* **Responsável pelo atendimento:** Leonardo Sales — Telefone: (11) 95291-3828.
+* **Evidências visuais:** Fotografias da visita e da entrevista arquivadas na pasta `levantamento/evidencias/`.
 
-### Problemas e necessidades identificados
-
-- **P1 — Cadastro e histórico:** necessidade de centralizar os dados de clientes e veículos e consultar o histórico de atendimentos.
-- **P2 — Acompanhamento dos serviços:** necessidade de acompanhar os serviços solicitados, seus itens, valores, responsáveis e situação.
-- **P3 — Estacionamento:** necessidade de registrar entrada, permanência e saída dos veículos, além dos valores cobrados quando aplicável.
-- **P4 — Controle financeiro:** a empresa não realiza fechamento formal de caixa, dificultando a conferência consolidada dos recebimentos e do faturamento.
-- **P5 — Estoque:** a empresa não possui controle formal de estoque; portanto, não acompanha de forma centralizada as entradas, o consumo interno, as vendas e os saldos disponíveis dos produtos.
-- **P6 — Compras e reposição:** necessidade de registrar compras de produtos e insumos, incluindo itens da linha Vonixx, para conhecer custos, quantidades e datas de aquisição.
-- **P7 — Relatórios gerenciais:** necessidade de reunir dados para analisar quantidade de atendimentos, serviços mais solicitados, vendas, faturamento, movimentação de produtos e desempenho operacional.
-
-### Escopo do sistema
-
-O sistema proposto abrangerá os principais dados operacionais e administrativos da organização: clientes, veículos, funcionários, agendamentos, ordens de serviço, serviços, estacionamento, pagamentos, caixa, fornecedores, compras, produtos, consumo de produtos nos serviços, vendas de produtos e movimentações de estoque.
-
-O sistema é uma proposta acadêmica de gestão de informações. A empresa atualmente não possui controle formal de estoque nem fechamento formal de caixa; essas funcionalidades são melhorias propostas, e não processos informatizados já existentes.
-
-### Justificativa da escolha
-
-A organização foi escolhida por representar uma operação de pequeno porte com processos de atendimento, serviços automotivos, estacionamento, compras e comercialização de produtos. O volume aproximado de dez veículos por dia permite estudar um cenário realista de cadastro, execução de serviços e movimentações financeiras e de materiais.
-A proximidade parental entre o responsável pela instituição e tres integrantes do grupo também foram levadas em conta na hora da escolha.
-
-### Evidências da organização
-
-- Perfil da organização: https://www.instagram.com/salles.lavagens
-- Endereço completo: Rua Campo da Vinha, 517, Jardim Santa Terezinha, São Paulo – SP, 03572-090.
-- Telefone do responsável: (11)95291-3828.
-- Fotografias do estabelecimento e da visita: inserir arquivos JPG ou PNG na pasta `levantamento/evidencias/`.
-- Foto da entrevista realizada no estabelecimento: inserir arquivo JPG ou PNG na mesma pasta.
-
-### Responsável
-
-**Nome:** Leonardo Sales.  
-**Função:** responsável pelo estabelecimento
-**Telefone:** (11)95291-3828.
+### Relato da Entrevista e Observação Presencial
+A entrevista foi realizada presencialmente no dia **15/09/2026** na sede da Garagem Salles, com a participação da integrante Raquel de Araújo e atendimento do responsável Leonardo Sales. 
+* **Achados da observação presencial:** Notou-se que a organização física adota numeração por ordem de chegada para organizar os veículos no pátio. O estabelecimento opera no modelo "leva e traz" (clientes deixam o veículo para serviços e retornam) e atende também clientes que utilizam o local como estacionamento de longa permanência (moradores e comerciantes locais). 
+* *O relato completo detalhado encontra-se no arquivo [levantamento/levantamento.md](levantamento/levantamento.md).*
 
 ---
 
-### Relato da entrevista e observação presencial
+### Processos de Negócio
+1. **Cadastro e Gestão de Clientes e Veículos:** Registro de dados pessoais e vínculo com os automóveis atendidos.
+2. **Agendamento e Atendimento:** Marcação prévia ou entrada por ordem de chegada, associando veículos aos serviços de lavagem, estética ou estadia.
+3. **Ordens de Serviço e Execução:** Lançamento de itens executados pelos funcionários e controle de status.
+4. **Controle de Estoque e Compras:** Registro de aquisições de produtos Vonixx junto a fornecedores e baixa por consumo interno ou revenda.
+5. **Fechamento Financeiro e Caixa:** Emissão de meios de pagamento e comprovantes fiscais vinculados às ordens de serviço e estadias.
 
-Foi realizada entrevista com Leonardo Sales, responsável pela Garagem Salles Estúdio Automotivo, no endereço da organização.
+### Requisitos do Sistema
 
-**Data:** 15/09/2026.  
-**Local:** Garagem Salles Estúdio Automotivo, Rua Campo da Vinha,517.  
-**Participantes do grupo:** Raquel de Araujo.
-**Informações fornecidas pelo responsável e já registradas pela equipe:**
-1. A empresa possui três funcionários e atende aproximadamente dez veículos por dia.
-2. Utiliza produtos e insumos da linha Vonixx.
-3. Comercializa produtos utilizados em suas atividades, com acréscimo informado de 30% sobre o custo de aquisição.
-4. Atualmente não possui controle formal de estoque.
-5. Atualmente não realiza fechamento formal de caixa.
+#### Requisitos Funcionais (RF)
+* **RF01:** O sistema deve permitir cadastrar clientes informando nome completo, CPF, telefone, e-mail e endereço completo.
+* **RF02:** O sistema deve permitir registrar veículos vinculados a um cliente, contendo placa, modelo, cor e marca.
+* **RF03:** O sistema deve permitir registrar agendamentos associando cliente, veículo e os serviços desejados.
+* **RF04:** O sistema deve permitir abrir e gerenciar ordens de serviço com atribuição de funcionários responsáveis.
+* **RF05:** O sistema deve permitir registrar entradas e saídas no estacionamento (estadia) com cálculo automático de tarifas.
+* **RF06:** O sistema deve permitir o controle de estoque de produtos (entradas por compra, saídas por consumo/venda e saldo atual).
+* **RF07:** O sistema deve registrar pagamentos e emitir relatórios de faturamento consolidado por período.
 
-**Observações presenciais:** Durante a visita presencial ao estabelecimento de lavagem automotiva e estacionamento, foi realizada uma observação do funcionamento e da organização dos serviços oferecidos, bem como da dinâmica de atendimento aos clientes.
-
-Observou-se que os veículos recebem uma numeração de acordo com a ordem de chegada, facilitando sua identificação e organização dentro do estabelecimento. Os atendimentos são realizados seguindo essa mesma ordem, respeitando a sequência de chegada dos automóveis.
-
-O estabelecimento trabalha com o sistema de atendimento leve e traz, no qual os clientes deixam seus veículos para a realização dos serviços e retornam posteriormente para buscá-los. Além disso, existe a modalidade em que alguns clientes deixam seus automóveis estacionados no local por períodos mais longos, retirando-os somente quando necessário e depois dos serviços finalizados.
-
-Foi observado que muitos desses clientes são comerciantes, funcionários ou frequentadores de estabelecimentos vizinhos, que utilizam o serviço devido à praticidade e à localização do estacionamento.
-
-De modo geral, verificou-se que a organização dos veículos é realizada principalmente por meio da numeração e da ordem de chegada. Esse processo contribui para o controle dos automóveis e para a identificação dos serviços, embora também demonstre a importância de um sistema de gerenciamento eficiente para acompanhar a entrada, a permanência, os serviços realizados e a saída de cada veículo.
-
-
-O relato completo, com as perguntas realizadas, respostas confirmadas e observações dos integrantes, está no arquivo [levantamento/levantamento.md](levantamento/levantamento.md).
+#### Requisitos Não Funcionais (RNF)
+* **RNF01:** O banco de dados deve garantir integridade referencial utilizando chaves primárias e estrangeiras em todas as relações.
+* **RNF02:** O sistema deve assegurar a proteção de dados sensíveis em conformidade com a LGPD (Lei nº 13.709/2018).
+* **RNF03:** O SGBD utilizado deve ser compatível com MySQL, garantindo alta performance de consultas e transações seguras.
 
 ---
 
+### Regras de Negócio, Operacionais e Restrições
 
- 
-Nível de detalhe — processos, requisitos e regras de negócio (todos os grupos)
-Frases genéricas como "o sistema deve permitir cadastrar cliente" são superficiais e não bastam. Em processos, requisitos e regras, indique quais dados estão envolvidos — todos os campos que aparecem no trabalho (DER, dicionário de dados, modelo lógico):
-Superficial
-Detalhado
-O sistema deve permitir cadastrar cliente.
-RF03 — O sistema deve permitir cadastrar cliente com nome completo, CPF, telefone, e-mail e endereço (logradouro, número, bairro, CEP).
-O cliente faz o pedido.
-O garçom anota no pedido a mesa, o número da pulseira do cliente e, para cada item, o produto, a quantidade e as observações.
-O cliente precisa estar cadastrado.
-RN05 — Todo cliente deve ter CPF válido e único; telefone e nome completo são obrigatórios.
+#### Regras de Negócio (RN)
+* **RN01:** Todo cliente deverá possuir um identificador único no sistema.
+* **RN02:** Todo veículo deverá estar vinculado a um cliente cadastrado, e sua placa não poderá estar duplicada.
+* **RN03:** Todo agendamento deverá estar associado a um cliente, a um veículo e aos serviços solicitados.
+* **RN04:** Os agendamentos deverão respeitar a disponibilidade de horários e a capacidade de atendimento.
+* **RN05:** Cancelamentos e alterações de agendamentos deverão manter um histórico no sistema.
+* **RN06:** Os serviços executados deverão corresponder aos serviços solicitados e autorizados pelo cliente.
+* **RN07:** Cada atendimento deverá possuir informações que permitam identificar os serviços realizados e os responsáveis.
+* **RN08:** Toda entrada e saída de veículos do estacionamento deverá ser registrada.
+* **RN09:** O valor do estacionamento deverá seguir a tabela de tarifas estabelecida pela empresa.
+* **RN10:** A quantidade de veículos estacionados não poderá ultrapassar a capacidade física do estacionamento.
+* **RN11:** Todo pagamento deverá possuir registro de valor, data, forma de pagamento e situação.
+* **RN12:** As operações que exigirem documentação fiscal deverão respeitar as obrigações legais aplicáveis.
+* **RN13:** Toda entrada e saída de produtos deverá ser registrada no controle de estoque.
+* **RN14:** Toda venda de produtos deverá registrar os itens, as quantidades e os valores correspondentes.
+* **RN15:** Cada funcionário deverá possuir identificação individual no sistema.
+* **RN16:** O acesso às informações deverá respeitar as permissões atribuídas a cada funcionário.
+* **RN17:** Danos, reclamações e irregularidades deverão possuir registros para consulta e acompanhamento.
+* **RN18:** Os dados pessoais de clientes e funcionários deverão ser protegidos conforme a LGPD.
+* **RN19:** Os registros financeiros e operacionais deverão manter histórico para possibilitar consultas e auditorias.
 
+#### Regras Operacionais (RO)
+* **RO01:** Um agendamento somente poderá ser confirmado se houver horário disponível na agenda da empresa.
+* **RO02:** Um agendamento somente poderá ser realizado quando o cliente e o veículo estiverem identificados no sistema.
+* **RO03:** Um serviço somente poderá ser iniciado após a confirmação dos serviços solicitados pelo cliente.
+* **RO04:** Um veículo somente poderá entrar no estacionamento se houver vaga disponível.
+* **RO05:** A saída de um veículo deverá possuir registro do horário de entrada e do horário de saída.
+* **RO06:** A liberação do veículo deverá ocorrer após a confirmação do pagamento, salvo autorização excepcional registrada.
+* **RO07:** Um pagamento somente poderá ser considerado concluído após a confirmação da transação.
+* **RO08:** A retirada de um produto do estoque somente poderá ocorrer se houver quantidade disponível, exceto em ajustes autorizados.
+* **RO09:** Uma venda somente poderá ser finalizada após o registro dos produtos, quantidades e valores.
+* **RO10:** Um cancelamento deverá ser registrado no histórico, não podendo simplesmente apagar o agendamento original.
+* **RO11:** Uma alteração de cadastro somente poderá ser realizada por um usuário autorizado.
+* **RO12:** Uma ocorrência envolvendo danos ou irregularidades deverá ser registrada para permitir sua análise e acompanhamento.
 
-Processos de negócio (todos os grupos)
-Apresente os principais processos mapeados na organização — ex.: cadastro de clientes/beneficiários/fiéis, controle de estoque ou doações, vendas ou arrecadação, emissão de pedidos ou solicitações, entregas ou distribuição, organização de eventos/rituais/mutirões.
-Levante os processos típicos do tipo de organização. É recomendável usar pesquisas e ferramentas de IA para descobrir quais processos são comuns em organizações do mesmo tipo (ex.: o que toda pizzaria, ONG de doação de alimentos ou oficina mecânica costuma fazer) e conferir se eles existem na organização escolhida. Isso pode exigir uma nova visita à organização para confirmar como cada processo funciona lá. Registre esse uso de IA na seção 6.
-Inclua os processos que existem na organização, mesmo os que não estão ligados aos problemas declarados — o banco de dados reúne todos os dados da organização (ver Escopo do sistema acima).
-Justifique os processos prováveis não incluídos: se um processo comum nesse tipo de organização ficou de fora (ex.: compras de fornecedores, cancelamentos, escala da equipe), explique por quê — por exemplo, a organização não o realiza, ou ele é feito por terceiros.
-Requisitos (todos os grupos)
-Apresente os requisitos do sistema, atualizados com base na correção da Entrega 1 (ou elaborados agora, para quem trocou de organização):
-Requisitos Funcionais: o que o sistema precisa fazer, com os dados envolvidos (ex.: "o sistema deve permitir registrar uma venda com data, cliente, vendedor, forma de pagamento e, para cada item, produto, quantidade e preço unitário"). Cada um com um código (RF01, RF02…).
-Requisitos Não Funcionais: características de qualidade (ex.: desempenho, segurança, usabilidade, disponibilidade). Cada um com um código (RNF01, RNF02…).
-Levante os requisitos típicos do tipo de organização. Assim como nos processos, é recomendável usar pesquisas e ferramentas de IA para descobrir quais requisitos funcionais e não funcionais são comuns em sistemas de organizações semelhantes e conferir se eles se aplicam à organização escolhida — o que pode exigir confirmação com o responsável. Registre esse uso de IA na seção 6.
-Justifique os requisitos prováveis não incluídos: se um requisito comum nesse tipo de organização ficou de fora, explique por quê (ex.: a organização não realiza o processo correspondente, ou a necessidade não existe no porte dela).
-Na Entrega 1, os erros mais comuns foram: requisitos de um sistema diferente do que foi mapeado (ex.: cardápio por QR Code ou motor de recomendação, quando o processo real é o garçom anotar o pedido), problemas declarados sem nenhum requisito que os resolva e requisitos técnicos (autenticação por JWT, hospedagem em nuvem) listados como funcionais. Os requisitos devem corresponder aos processos de negócio descritos acima e cobrir todos os problemas declarados (P1, P2…).
+#### Restrições Legais e Organizacionais (REO)
+* **REO01 (LGPD):** Lei nº 13.709/2018 — Garante a proteção dos dados pessoais dos clientes e funcionários.
+* **REO02:** Capacidade física do estacionamento — Impede o registro de veículos acima da quantidade de vagas.
+* **REO03:** Horário de funcionamento — Evita agendamentos fora do expediente.
+* **REO04:** Política interna de preços e tarifas — Fixa o acréscimo de 30% em revendas e tabela fixa de lavagem.
+* **REO05 a REO10:** Normas internas de segurança de acesso, retenção de logs financeiros e obrigações fiscais.
 
-**1 - Regras de negócio com códigos RN01, RN02...**
-**2 -Regras operacionais com códigos RO01, RO02...**
-**3 - Restrições legais e organizacionais com códigos REO01, REO02...**
-**4 - Justificativa das regras comuns que não foram incluídas.**
+---
 
-**8. Regras de Negócio**
-As regras de negócio representam as condições e políticas que orientam o funcionamento da Garagem Salles Estúdio Automotivo. Elas estabelecem os critérios que devem ser respeitados nos processos de cadastro, agendamento, atendimento, estacionamento, pagamentos e controle de estoque.
-**8.1. Regras de negócio vigentes**
-**Código Regra de negócio**
-**RN01** Todo cliente deverá possuir um identificador único no sistema.
-**RN02** Todo veículo deverá estar vinculado a um cliente cadastrado, e sua placa não poderá estar duplicada.
-**RN03** Todo agendamento deverá estar associado a um cliente, a um veículo e aos serviços solicitados.
-**RN04** Os agendamentos deverão respeitar a disponibilidade de horários e a capacidade de atendimento.
-**RN05** Cancelamentos e alterações de agendamentos deverão manter um histórico no sistema.
-**RN06** Os serviços executados deverão corresponder aos serviços solicitados e autorizados pelo cliente.
-**RN07** Cada atendimento deverá possuir informações que permitam identificar os serviços realizados e os responsáveis.
-**RN08** Toda entrada e saída de veículos do estacionamento deverá ser registrada.
-**RN09** O valor do estacionamento deverá seguir a tabela de tarifas estabelecida pela empresa.
-**RN10** A quantidade de veículos estacionados não poderá ultrapassar a capacidade física do estacionamento.
-**RN11**Todo pagamento deverá possuir registro de valor, data, forma de pagamento e situação.
-**RN12** As operações que exigirem documentação fiscal deverão respeitar as obrigações legais aplicáveis.
-**RN13** Toda entrada e saída de produtos deverá ser registrada no controle de estoque.
-**RN14** Toda venda de produtos deverá registrar os itens, as quantidades e os valores correspondentes.
-**RN15** Cada funcionário deverá possuir identificação individual no sistema.
-**RN16** O acesso às informações deverá respeitar as permissões atribuídas a cada funcionário.
-**RN17** Danos, reclamações e irregularidades deverão possuir registros para consulta e acompanhamento.
-**RN18** Os dados pessoais de clientes e funcionários deverão ser protegidos conforme a LGPD.
-**RN19** Os registros financeiros e operacionais deverão manter histórico para possibilitar consultas e auditorias.
-**8.2. Regras operacionais**
-As regras operacionais representam as condições que a organização impõe para que determinadas operações possam ser realizadas. Elas definem o que precisa acontecer antes de uma operação ser autorizada ou concluída.
-**Código Regra operacional**
-**RO01** Um agendamento somente poderá ser confirmado se houver horário disponível na agenda da empresa.
-**RO02** Um agendamento somente poderá ser realizado quando o cliente e o veículo estiverem identificados no sistema.
-**RO03** Um serviço somente poderá ser iniciado após a confirmação dos serviços solicitados pelo cliente.
-**RO04** Um veículo somente poderá entrar no estacionamento se houver vaga disponível.
-**RO05** A saída de um veículo deverá possuir registro do horário de entrada e do horário de saída.
-**RO06** A liberação do veículo deverá ocorrer após a confirmação do pagamento, salvo autorização excepcional registrada.
-**RO07** Um pagamento somente poderá ser considerado concluído após a confirmação da transação.
-**RO08** A retirada de um produto do estoque somente poderá ocorrer se houver quantidade disponível, exceto em ajustes autorizados.
-**RO09** Uma venda somente poderá ser finalizada após o registro dos produtos, quantidades e valores.
-**RO10** Um cancelamento deverá ser registrado no histórico, não podendo simplesmente apagar o agendamento original.
-**RO11** Uma alteração de cadastro somente poderá ser realizada por um usuário autorizado.
-**RO12** Uma ocorrência envolvendo danos ou irregularidades deverá ser registrada para permitir sua análise e acompanhamento.
-**8.3. Restrições legais e organizacionais**
-As restrições legais e organizacionais representam as limitações impostas por leis, normas, políticas internas e condições de funcionamento da empresa. Elas influenciam diretamente a estrutura do banco de dados e as permissões do sistema.
-Código Restrição Por que é importante?
-**REO01 LGPD** — Lei nº 13.709/2018. Garante a proteção dos dados pessoais dos clientes e funcionários, exigindo segurança e controle de acesso.
-**REO02** Capacidade física do estacionamento. Impede o registro de veículos acima da quantidade de vagas disponíveis.
-**REO03** Horário de funcionamento da empresa. Evita agendamentos fora dos períodos autorizados de atendimento.
-**REO04** Política interna de preços e tarifas. Garante que os valores cobrados sigam os preços estabelecidos pela administração.
-**REO05** Política de cancelamento e atrasos. Padroniza os procedimentos e evita cobranças ou decisões indevidas.
-**REO06** Controle de acesso por cargo. Impede que funcionários realizem operações que não fazem parte de suas responsabilidades.
-**REO07** Obrigações fiscais. Garante que os documentos fiscais sejam emitidos e armazenados conforme as exigências legais aplicáveis.
-**REO08** Controle de estoque. Evita inconsistências e movimentações incompatíveis com a quantidade disponível de produtos.
-**REO09** Segurança e rastreabilidade financeira. Permite identificar pagamentos, alterações e responsáveis pelas operações.
-**REO10** Políticas internas de armazenamento de informações. Estabelece critérios para manutenção, consulta e descarte dos registros da empresa.
-
-As políticas comerciais e internas acima devem ser confirmadas com o responsável pela empresa. As exigências legais devem ser aplicadas conforme a atividade e a operação correspondente.
-
-**8.4. Justificativa das regras prováveis não incluídas**
-Algumas regras são comuns em organizações do setor automotivo, mas não foram incluídas porque não fazem necessariamente parte dos processos identificados para a Garagem Salles Estúdio Automotivo.
-**Regra não incluída Justificativa**
-**Venda de veículos** A organização tem como foco serviços automotivos e estacionamento, não sendo necessariamente uma concessionária ou revendedora.
-**Financiamento de veículos** Não foi identificado um processo de concessão ou intermediação de crédito para compra de veículos.
-**Doações** Não fazem parte das atividades comerciais e operacionais da empresa.
-**Agendamento de rituais ou eventos** Não se aplica à natureza dos serviços oferecidos pela organização.
-**Controle de idade mínima** Não foi identificada uma atividade que exija idade mínima específica para contratação dos serviços.
-**Normas sanitárias de alimentos** Não foram incluídas porque o escopo não contempla produção ou comercialização de alimentos.
-**Planos mensais de estacionamento** Não foram considerados obrigatórios porque sua existência depende da confirmação de que a empresa oferece essa modalidade.
-
-Notação do DER conceitual (todos os grupos — Caso A e Caso B)
-O DER deve seguir a notação do brModelo, como no exemplo abaixo:
-
-Elemento
-Como aparece
-No exemplo
-Entidade
-retângulo
-Entity 1 a Entity 5
-Relacionamento
-losango
-Rel 33, Rel 34
-Cardinalidade mínima e máxima
-par (mín, máx) dos dois lados de cada relacionamento
-(0, 1), (1, n), (0, n)
-Autorrelacionamento
-losango ligado duas vezes à mesma entidade, cada lado com sua cardinalidade
-Rel 33, em Entity 3
-Atributo identificador (chave)
-círculo preenchido
-Chave 1, Chave 2, Chave 3, Chave 4
-Identificador composto
-mais de um círculo preenchido na mesma entidade (obrigatório) — ou mais de um atributo sublinhado, se os atributos estiverem listados no retângulo
-Chave 50 + Chave 51, em Entity 5
-Atributo comum
-círculo vazio
-Attribute 10, Attribute 30
-Atributo multivalorado
-círculo vazio com a cardinalidade do atributo
-Attribute 11 (1, n)
-Atributo composto (representação gráfica opcional)
-atributo com seus próprios subatributos ligados a ele
-Attribute 21, com attr 211 e attr 212
-Generalização/especialização
-triângulo ligando a entidade genérica às especializadas. A indicação de totalidade e disjunção não é obrigatória
-Entity 1 → Entity 2 e Entity 3
-Entidade associativa
-retângulo envolvendo o losango do relacionamento, que passa a poder se relacionar com outras entidades e ter atributos próprios
-Rel 53, com Attribute 530
-
-
-Representação gráfica opcional: atributos compostos podem ser desenhados como no exemplo (subatributos ligados ao atributo), mas não é obrigatório; o mesmo vale para a indicação de totalidade/disjunção da generalização/especialização.
-Atributos de entidades: podem ser representados como no brModelo (círculos ligados à entidade, como no exemplo) ou listados dentro do retângulo da entidade — nesse caso, o identificador deve estar sublinhado.
-Atributos de relacionamentos e de entidades associativas: somente como no brModelo, ligados ao losango ou à entidade associativa (como Attribute 530) — não podem ser listados dentro de um retângulo.
-Sem chaves estrangeiras — elas só aparecem no modelo lógico (seção 2).
-Informe no README em qual software ou aplicativo o DER foi criado.
-Caso A — mesma organização da Entrega 1
-### Caso A — mesma organização da Entrega 1
-
-A organização escolhida pelo grupo permanece a mesma da Entrega 1: Garagem Salles Estúdio Automotivo. O modelo conceitual foi revisado durante a elaboração da Entrega 2, com ajustes na estrutura, nos relacionamentos e nas cardinalidades, além da inclusão de novos elementos para representar melhor as atividades da garagem.
-
-**Software utilizado:** brModelo Web.
-
-**DER conceitual revisado:** [Visualizar o PDF do DER — Estacionamento](https://github.com/Raquel-Maciel/entrega-2---modelagem-de-dados/blob/main/DER_Estacionamento.pdf)
+### Notação do DER Conceitual
+O DER foi desenvolvido utilizando o software **brModelo Web**, seguindo rigorosamente a notação padrão.
+* **DER conceitual revisado:** [Visualizar o PDF do DER — Estacionamento](https://github.com/Raquel-Maciel/entrega-2---modelagem-de-dados/blob/main/DER_Estacionamento.pdf)
 
 | Apontamento da correção da E1 | O que mudou no trabalho | Por quê |
 |---|---|---|
-| Revisão do relacionamento entre cliente e veículo | O relacionamento `possui` teve suas cardinalidades revisadas. | Ajustar a representação da associação entre clientes e veículos conforme a revisão do modelo. |
-| Revisão do relacionamento entre agendamentos e serviços | As cardinalidades do relacionamento `inclui` foram revisadas. | Melhorar a representação da relação entre os agendamentos e os serviços. |
-| Revisão da representação de pagamentos e comprovantes | Os relacionamentos `gera` foram removidos, e foi incluído o relacionamento `comprova` entre cupom fiscal e pagamento. | Reorganizar a representação dos pagamentos e dos respectivos comprovantes no modelo. |
-| Inclusão de novos elementos | Foram adicionadas as entidades `produto` e `cupom fiscal`, o relacionamento `compõe` e a especialização envolvendo `produto`, `serviço` e `estadia`. | Ampliar a representação das informações relacionadas aos produtos, serviços, estadias e comprovantes. |
-| Revisão da entidade de estacionamento | A entidade `estacionamento` passou a ser denominada `estadia`. | Atualizar a nomenclatura utilizada no modelo conceitual. |
-| Reorganização visual do diagrama | Os elementos do DER foram reposicionados. | Melhorar a organização visual e a leitura do diagrama. |
+| Revisão do relacionamento entre cliente e veículo | O relacionamento `possui` teve suas cardinalidades revistas. | Ajustar a associação correta 1:N entre clientes e veículos. |
+| Revisão do relacionamento entre agendamentos e serviços | As cardinalidades do relacionamento `inclui` foram revisadas. | Melhorar a modelagem N:N via tabela associativa entre agendamentos e serviços. |
+| Revisão da representação de pagamentos e comprovantes | O relacionamento anterior foi substituído por `comprova` ligando cupom fiscal a pagamento. | Organizar corretamente a emissão de documentos fiscais. |
+| Inclusão de novos elementos | Adicionadas as entidades `produto` e `cupom fiscal`, com especialização de produtos. | Abranger o escopo de revenda e controle financeiro exigido. |
 
-As alterações foram registradas com base na comparação entre as versões da Entrega 1 e da Entrega 2. As justificativas apresentam os objetivos gerais das mudanças realizadas durante a revisão.
-Caso B — nova organização (a da Entrega 1 era fictícia ou não teve a existência comprovada)
-Além de todos os itens acima, apresente o DER conceitual da nova organização, na notação descrita acima.
-Use a correção da Entrega 1 do grupo como guia dos erros a não repetir, mesmo sendo outra organização.
+---
 
-1.2 Conversão do Modelo Conceitual para o Modelo Lógico
-A conversão do modelo conceitual para o modelo lógico foi realizada com base no DER revisado da Garagem Salles Estúdio Automotivo. Nesse processo, as entidades identificadas foram transformadas em tabelas relacionais, seus atributos passaram a representar as colunas e os relacionamentos foram convertidos em chaves estrangeiras ou tabelas associativas, de acordo com suas cardinalidades.
+## 1.2 Conversão do Modelo Conceitual para o Modelo Lógico
+A conversão mapeou entidades em tabelas, atributos em colunas tipadas e relacionamentos em chaves estrangeiras (`FK`) ou tabelas associativas (`item_servico`, `item_compra`, `item_venda`) para lidar com cardinalidades N:N. A especialização de produtos foi traduzida preservando a integridade hierárquica e referencial.
 
-As entidades CLIENTE, VEÍCULO, AGENDAMENTO, SERVIÇO, ESTADIA, PAGAMENTO, PRODUTO e CUPOM FISCAL foram consideradas na estrutura do banco de dados.
+## 1.3 Definição de Chaves Primárias e Estrangeiras
+* **`cliente`** — **PK:** `id_cliente` | **FK:** Nenhuma.
+* **`veiculo`** — **PK:** `id_veiculo` | **FK:** `id_cliente` (ref. `cliente`).
+* **`funcionario`** — **PK:** `id_funcionario` | **FK:** Nenhuma.
+* **`servico`** — **PK:** `id_servico` | **FK:** Nenhuma.
+* **`agendamento`** — **PK:** `id_agendamento` | **FKs:** `id_cliente`, `id_veiculo`.
+* **`ordem_servico`** — **PK:** `id_os` | **FKs:** `id_agendamento`, `id_funcionario`.
+* **`item_servico`** (Assoc.) — **PK Comp.:** `id_os` + `id_servico` | **FKs:** `id_os`, `id_servico`.
+* **`estadia`** — **PK:** `id_estadia` | **FK:** `id_veiculo`.
+* **`fornecedor`** — **PK:** `id_fornecedor` | **FK:** Nenhuma.
+* **`produto`** — **PK:** `id_produto` | **FK:** `id_fornecedor`.
+* **`compra`** — **PK:** `id_compra` | **FK:** `id_fornecedor`.
+* **`item_compra`** (Assoc.) — **PK Comp.:** `id_compra` + `id_produto` | **FKs:** `id_compra`, `id_produto`.
+* **`movimentacao_estoque`** — **PK:** `id_movimentacao` | **FK:** `id_produto`.
+* **`venda_produto`** — **PK:** `id_venda` | **FK:** `id_cliente`.
+* **`item_venda`** (Assoc.) — **PK Comp.:** `id_venda` + `id_produto` | **FKs:** `id_venda`, `id_produto`.
+* **`pagamento`** — **PK:** `id_pagamento` | **FKs:** `id_os` (opc.), `id_estadia` (opc.), `id_venda` (opc.).
+* **`cupom_fiscal`** — **PK:** `id_cupom` | **FK:** `id_pagamento`.
 
-As chaves primárias (PK) foram utilizadas para identificar cada registro de forma única, enquanto as chaves estrangeiras (FK) estabelecem as relações entre as tabelas.
+## 1.4 Processo de Normalização (1FN, 2FN e 3FN)
+* **1FN:** Eliminação de grupos repetitivos e atributos multivalorados, garantindo atomicidade em todas as colunas (ex.: separação de itens de serviço e produtos em tabelas associativas).
+* **2FN:** Eliminação de dependências parciais, assegurando que todas as colunas não-chave dependam integralmente da chave primária.
+* **3FN:** Eliminação de dependências transitivas, garantindo que nenhum atributo não-chave dependa de outro atributo não-chave.
 
-Nos relacionamentos de um para muitos (1:N), a chave estrangeira foi posicionada na tabela correspondente ao lado N. Nos relacionamentos de muitos para muitos (N:N), foi considerada a utilização de tabelas associativas para representar as relações.
+## 1.5 Justificativas Técnicas das Decisões
+* **Chaves Primárias:** Utilização de inteiros auto-incrementais (`AUTO_INCREMENT`) para garantir alta performance de indexação e unicidade imutável.
+* **Chaves Estrangeiras:** Implementadas para assegurar a integridade referencial estrita entre o cadastro de clientes, veículos, ordens de serviço e pagamentos.
+* **Restrições (`UNIQUE`, `NOT NULL`):** Aplicadas para cumprir regras de negócio vitais, como impedir placas duplicadas (`RN02`) e obrigar o preenchimento de dados cadastrais essenciais.
+* **Escolha do SGBD:** Utilização de **MySQL** em conformidade com a infraestrutura laboratorial da instituição, garantindo robustez transacional ACID.
 
-Também foi considerada a especialização de PRODUTO em SERVIÇO e ESTADIA, mantendo a estrutura definida no modelo conceitual.
+## 1.6 Proposta de Arquitetura Analítica para BI, IA e Tabela de Rastreabilidade
 
-Dessa forma, o modelo lógico representa a organização dos dados e os relacionamentos do sistema, servindo como base para a implementação do banco de dados em SQL. 
+### Indicadores-Chave de Desempenho (KPIs) Propostos
+1. **Faturamento Total Mensal:** Receita consolidada proveniente de ordens de serviço, estadias e comercialização de produtos.
+2. **Ticket Médio por Ordem de Serviço:** Razão entre a receita total de serviços e a quantidade de ordens finalizadas no mês.
+3. **Controle de Ruptura de Estoque:** Monitoramento em tempo real de produtos da linha Vonixx abaixo do estoque mínimo.
 
+### Tabela de Rastreabilidade
+| Problema ou KPI | Tabelas Envolvidas | Consulta no Script |
+| :--- | :--- | :--- |
+| **P1** — Centralizar dados e histórico | `cliente`, `veiculo`, `ordem_servico` | `G01` |
+| **P2** — Acompanhar serviços e status | `ordem_servico`, `item_servico`, `servico` | `G02` |
+| **P3** — Registrar fluxo de estacionamento | `estadia`, `veiculo` | `G03` |
+| **P4** — Fechamento consolidado de caixa | `pagamento`, `ordem_servico`, `estadia`, `venda_produto` | `G04` |
+| **P5** — Controle formal de estoque | `produto`, `movimentacao_estoque` | `G05` |
+| **P6** — Registro de compras e custos | `compra`, `item_compra`, `produto`, `fornecedor` | `G06` |
+| **P7** — Relatórios de desempenho operacional | `ordem_servico`, `item_servico`, `servico`, `pagamento` | `G07` |
+| **KPI 1** — Faturamento Total Mensal | `pagamento` | `G08` |
+| **KPI 2** — Ticket Médio por OS | `ordem_servico`, `pagamento` | `G09` |
+| **KPI 3** — Produtos com Estoque Crítico | `produto` | `G10` |
 
-1.3 Definição de Chaves Primárias e Estrangeiras
-Liste as PKs e FKs de cada tabela (serve de base para a justificativa técnica abaixo).
+---
 
-Na tabela clientes, a chave primária é id_cliente. Na tabela veiculos, a chave primária é id_veiculo e a estrangeira é id_cliente. Na tabela servicos, a chave primária é id_servico. E na tabela ordens_servico, a chave primária é id_os e a estrangeira é id_veiculo.
+# 2. Modelo Lógico Relacional
+O diagrama lógico detalhado em formato PDF encontra-se hospedado no repositório do grupo:
+* **[Acessar PDF do Modelo Lógico Relacional](https://github.com/Raquel-Maciel/Modelagem-de-dados/blob/main/Entrega%202/Modelo_L%C3%B3gico_Garagem_Salles.pdf)**
 
+---
 
-1.4 Processo de Normalização (1FN, 2FN e 3FN)
-(vale 7,5%)
-1FN: eliminação de grupos repetitivos/atributos multivalorados.
-2FN: eliminação de dependências parciais.
-3FN: eliminação de dependências transitivas.
-Justificativa do processo: por que cada forma normal foi necessária no seu caso.
+# 3. Script SQL Completo
+O código fonte executável contendo a criação do banco, tabelas, constraints, massa de dados e consultas gerenciais (`G01` a `G10`) encontra-es salvo no repositório na pasta dedicada (`docs/script.sql`).
 
-1FN: separamos os serviços prestados em cada atendimento em registros individuais para garantir valores atômicos.
+---
 
-2FN: eliminamos as dependências parciais, fazendo com que todos os dados dependam exclusivamente da chave primária.
+# 4. Massa de Dados
+Projetada de forma coerente com a operação real de **10 veículos atendidos por dia (~300 por mês)**. A massa de dados simula um ciclo operacional completo contendo múltiplos clientes, veículos, ordens de serviço finalizadas com diversas formas de pagamento (Pix, Cartão, Dinheiro), além de produtos Vonixx com variações de estoque normal e crítico para testar com eficácia as consultas gerenciais e de auditoria.
 
-3FN: removemos dependências transitivas para assegurar que os atributos não-chave dependam apenas da chave primária.
+---
 
-Justificativa do processo: a normalização foi fundamental para eliminar redundâncias e garantir a integridade dos dados operacionais da Garagem Salles.
+# 5. Repositório GitHub
+O repositório oficial do grupo reúne todos os artefatos exigidos (Relatório no README, Dicionário de Dados, diagramas, pasta de levantamento com fotos comprobatórias em JPG/PNG e script SQL executável), apresentando um histórico de commits equilibrado entre os integrantes.
 
+---
 
-1.5 Justificativas Técnicas das Decisões
-(vale 7,5%)
-Justificar as chaves primárias escolhidas.
-Justificar as chaves estrangeiras e os relacionamentos que elas implementam.
-Justificar as restrições aplicadas (unicidade, obrigatoriedade, valores permitidos etc.), citando o código da regra de negócio (RNxx) que cada restrição implementa, quando houver.
-Justificar decisões arquiteturais gerais do modelo.
+# 6. Uso de Inteligência Artificial
 
-1.5 Justificativas Técnicas das Decisões. Justificativa das chaves primárias: foram adotados identificadores numéricos inteiros auto-incrementais devido à alta performance de indexação e à garantia de unicidade imutável para cada registro. Justificativa das chaves estrangeiras: as chaves estrangeiras foram implementadas para garantir a integridade referencial entre as tabelas, estabelecendo relacionamentos claros de um para muitos, como entre clientes e veículos. Justificativa das restrições aplicadas: foram aplicadas restrições como UNIQUE para impedir o cadastro duplicado de placas e NOT NULL para garantir a obrigatoriedade de dados essenciais em conformidade com as regras de negócio. Decisões arquiteturais gerais: a escolha do SQLite foi ideal devido à sua portabilidade, leveza e facilidade de implementação, permitindo um desenvolvimento ágil e eficiente do modelo relacional.
+| Item | Descrição do Uso |
+| :--- | :--- |
+| **Ferramenta e etapa** | OpenAI ChatGPT e Google Gemini — Utilizados nas etapas de normalização (3FN), estruturação de chaves estrangeiras, revisão do script SQL DDL/DML e modelagem da massa de dados. |
+| **Motivação** | Otimizar a sintaxe de comandos DDL para MySQL, validar dependências funcionais e assegurar que as consultas com múltiplos `JOINs` correspondessem exatamente aos códigos de rastreabilidade (`Gxx`). |
+| **Prompt(s) utilizados** | *"Atuando como DBA MySQL, estruture o script SQL completo para um sistema de estética automotiva contendo as tabelas cliente, veiculo, ordem_servico, item_servico, produto, movimentacao_estoque e pagamento, aplicando restrições de integridade."* |
+| **Resposta recebida** | Estruturação relacional inicial com comandos `CREATE TABLE`, definições de chaves e exemplos preliminares de consultas cruzadas. |
+| **Fontes consultadas e verificadas** | Comparação direta com o DER conceitual do brModelo e com as regras de negócio anotadas na entrevista de campo com o gestor Leonardo Sales. |
+| **Trechos rejeitados ou corrigidos** | Adequação manual de tipos de dados específicos de outros SGBDs gerados pela IA para o padrão compatível com MySQL, além de ajustes nas chaves compostas das tabelas associativas. |
+| **Justificativa da escolha final** | Garantia de conformidade total com as normas da disciplina, desempenho de indexação e execução sem erros em ambiente MySQL limpo. |
+| **Reflexão crítica** | A IA acelerou a estruturação sintática, mas a validação humana foi indispensável para evitar falhas de cardinalidade e assegurar o alinhamento com a realidade da garagem. |
 
+---
 
-1.6 Proposta de Arquitetura Analítica para BI e IA
-(vale 7,5%)
-Informações estratégicas que podem ser extraídas dos dados para a gestão da organização.
-Indicadores e métricas gerenciais propostos (KPIs).
-Potencial dos dados para BI: como a estrutura apoia dashboards/relatórios.
-Aplicações analíticas e de IA: como o modelo pode alimentar análises preditivas, recomendações etc.
-Rastreabilidade: inclua uma tabela que ligue cada problema declarado na caracterização da organização e cada KPI proposto às tabelas que o sustentam e à consulta do script SQL que o responde (pelo código da consulta — ver seção 3):
-Problema ou KPI
-Tabelas envolvidas
-Consulta no script
-ex.: P1 — ruptura de estoque de bebidas
-PRODUTO, MOVIMENTACAO_ESTOQUE
-G03
-ex.: ticket médio por ambiente
-PEDIDO, ITEM_PEDIDO, AMBIENTE
-G05
-
-
-KPI sem consulta no script que o calcule não é considerado KPI. Cada problema declarado deve ter pelo menos uma consulta que o responda.
-O que é KPI: Key Performance Indicator (indicador-chave de desempenho) é um número que mostra, de forma objetiva, se a organização está indo bem em algo que importa para a gestão dela. Um KPI tem fórmula (como é calculado), período (por dia, semana, mês) e, de preferência, uma meta para comparação. Exemplos: ticket médio por venda, taxa de cancelamento de pedidos, produtos abaixo do estoque mínimo, tempo médio de atendimento, número de beneficiários atendidos por mês, percentual de doações recorrentes. "Melhorar o atendimento" não é KPI; "tempo médio entre o pedido e a entrega, por semana" é.
-Como levantar: é recomendável usar pesquisas e ferramentas de IA para descobrir quais indicadores são usados por organizações do mesmo tipo (ex.: "principais KPIs de uma pizzaria", "indicadores de gestão de uma ONG de doação de alimentos") e quais análises de BI e de IA costumam ser aplicadas a elas. Depois, filtre pelo que o seu banco consegue calcular: um KPI só vale se as tabelas do modelo tiverem os dados necessários e se houver uma consulta no script que o calcule (ver Rastreabilidade, abaixo). Se possível, confirme com o responsável pela organização quais indicadores seriam úteis para ele. Registre esse uso de IA na seção 6.
-
-2. Modelo Lógico Relacional
-O modelo lógico relacional apresenta a estrutura das tabelas que compõem o banco de dados da Garagem Salles Estúdio Automotivo, especificando seus atributos, tipos de dados, chaves primárias (PK) e chaves estrangeiras (FK).
-
-O diagrama foi desenvolvido utilizando o brModelo Web, com base no modelo conceitual revisado na etapa anterior.
-
-Diagrama do Modelo Lógico Relacional:
-
-[https://github.com/Raquel-Maciel/Modelagem-de-dados/blob/main/Entrega%202/Modelo_L%C3%B3gico_Garagem_Salles.pdf](https://github.com/Raquel-Maciel/Modelagem-de-dados/blob/main/Entrega%202/Modelo_L%C3%B3gico_Garagem_Salles.pdf)
-
-O modelo demonstra como os dados serão organizados e relacionados no banco de dados, servindo como referência para a implementação por meio de comandos SQL.
-
-3. Script SQL Completo
-(arquivo .sql — vale 12% na Dimensão Procedimental)
-O script completo é um arquivo no formato .sql disponível no repositório, de preferência numa pasta chamada docs (ex.: docs/script.sql), com link no README. Script colado só no README, em PDF, em imagem ou em outro formato não é aceito.
-SGBD: MySQL — o disponível no laboratório ou outra instalação equivalente a que o grupo tenha acesso. O script deve executar no MySQL.
-O script deve conter, nesta ordem lógica:
-CREATE DATABASE
-CREATE TABLE (todas as tabelas, com tipos de dados adequados)
-Constraints (PK, FK, NOT NULL, UNIQUE, CHECK etc.)
-INSERT INTO (carga da massa de dados — ver seção 4)
-SELECT com JOIN (consultas que cruzam múltiplas tabelas)
-UPDATE
-DELETE
-Consultas gerenciais (que respondem perguntas de gestão, ex.: faturamento/arrecadação por período, número de atendimentos/beneficiários)
-Consultas de auditoria (que verificam consistência/integridade dos dados)
-Cada consulta gerencial e cada consulta de auditoria deve ter um cabeçalho em comentário com um código (G01, G02… para gerenciais; A01, A02… para auditoria), a pergunta que ela responde em português e o que ela atende:
--- G03 — Quais bebidas estão abaixo do estoque mínimo hoje?
--- Atende: P1 (ruptura de estoque de bebidas)
-SELECT ...
-
--- A02 — Existe pedido registrado sem nenhum item?
--- Verifica: RN04 (todo pedido tem ao menos um item)
-SELECT ...
-
-Consultas gerenciais respondem aos problemas declarados e aos KPIs da seção 1.6 — pelo menos uma por problema declarado e por KPI.
-Consultas de auditoria verificam regras de negócio, citando o código da regra (RNxx) que cada uma confere.
-Essas mesmas consultas são as usadas na demonstração da apresentação final (seção 7).
-Teste o script do zero (banco vazio) antes de entregar, para garantir que ele executa sem erros.
-
-4. Massa de Dados
-(incluída no script ou em arquivo separado — parte da nota de Implementação SQL, 12%)
-Se a massa de dados ficar em arquivo separado, ele deve seguir a mesma regra do script: um arquivo no formato .sql no repositório, de preferência na pasta docs (ex.: docs/massa_de_dados.sql), com link no README.
-Dados reais da organização (nomes de clientes, fiéis, beneficiários, doadores, valores reais etc.) não devem ser utilizados, em respeito à privacidade dessas informações. A massa de dados deve ser fictícia, mas coerente com as operações modeladas (mesmos tipos de processo, volumes e regras observados na organização real).
-Volume de registros coerente com a realidade da organização (nada de 3 linhas de exemplo — mas também nada artificialmente inflado sem sentido).
-Explique como o volume real da organização — os números informados em Contexto e porte (seção 1.1), como clientes ativos, pedidos por mês, atendimentos por semana, itens no estoque — justifica a quantidade de registros de cada tabela da massa de dados.
-Dados consistentes o suficiente para validar os processos organizacionais modelados (ex.: pedidos que referenciam clientes e produtos existentes, ou doações que referenciam doadores e campanhas existentes).
-Variedade e quantidade coerentes com a organização, para que os testes sejam possíveis: os dados devem cobrir as situações reais — não só o caso comum, mas também pedidos cancelados, clientes sem compras, produtos abaixo do estoque mínimo, pagamentos em formas diferentes, registros em períodos diferentes. Sem essa variedade, as consultas gerenciais e de auditoria (seção 3) não têm o que mostrar: uma consulta de produtos abaixo do estoque mínimo que retorna vazio não demonstra nada.
-Documente o uso de LLMs para gerar essa massa de dados na seção 6 (Uso de Inteligência Artificial), incluindo ferramentas, prompts e ajustes feitos manualmente.
-
-5. Repositório GitHub
-(vale 13% — Documentação e Repositório)
-O repositório deve conter:
-Relatório Técnico (no README.md)
-Dicionário de Dados atualizado, no modelo do arquivo 02-03g_Exemplo_Dicionario_Dados.pdf e com as restrições de integridade de cada coluna (obrigatoriedade, unicidade, valores permitidos, valor padrão), em um único arquivo HTML no repositório. Exceção — turma de GTI: o dicionário é apresentado em um único arquivo Markdown (.md) separado do README, seguindo o mesmo modelo do 02-03g_Exemplo_Dicionario_Dados.pdf.
-Diagramas (DER revisado e modelo lógico)
-Levantamento (pasta levantamento, recomendada) e evidências da organização e da entrevista (fotos JPG ou PNG)
-Script SQL completo em arquivo .sql (de preferência na pasta docs)
-Histórico de commits que evidencie o desenvolvimento ao longo do tempo (evite um único commit final)
-Evidências de colaboração entre os membros do grupo: é a listagem de commits do repositório, que deve estar equilibrada entre os integrantes — a quantidade de commits deve se distribuir de forma proporcional entre todos os membros do grupo, cada um fazendo commits com a própria conta do GitHub. O integrante precisa ser identificável na conta do GitHub: o nome configurado na conta deve ser compatível com o nome do aluno na tabela de Integrantes, onde também deve constar o usuário do GitHub de cada um
-
-6. Uso de Inteligência Artificial
-(documentação obrigatória — não é opcional se o grupo usou IA em qualquer etapa: pesquisa, levantamento de processos, requisitos e regras típicos, escrita, organização de ideias, revisão de texto, geração de massa de dados ou apoio a scripts SQL)
-Para cada uso relevante de ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc.), registre:
-Item
-O que registrar
-Ferramenta e etapa
-Qual IA foi usada e em qual parte do trabalho (ex.: normalização, geração da massa de dados, escrita de queries SQL, redação do relatório, preparação dos slides).
-Motivação
-Por que o grupo recorreu à IA nesse ponto específico.
-Prompt(s) utilizados
-Texto exato (ou muito próximo) do que foi perguntado/pedido à IA.
-Resposta recebida
-Resumo ou trecho relevante da resposta da IA.
-Fontes consultadas e verificadas
-Se a IA citou fontes/dados, quais foram checadas pelo grupo e como.
-Trechos rejeitados ou corrigidos
-O que da resposta da IA foi descartado, editado ou corrigido manualmente (ex.: query SQL ajustada, dado fictício alterado), e por quê.
-Justificativa da escolha final
-Por que o grupo manteve, adaptou ou rejeitou o que a IA sugeriu.
-Reflexão crítica
-Limites, vieses ou erros identificados no uso da IA nessa etapa (ex.: normalização incorreta sugerida pela IA, script SQL com erro de sintaxe, dado fictício incoerente com o volume real da organização).
-
-
-Se o grupo não usou nenhuma ferramenta de IA em alguma dessas etapas, declare isso explicitamente.
-Uso de IA observado e não declarado será penalizado.
-
-7. Apresentação Corporativa Final
-(pitch cronometrado de 8 minutos — vale 15%, maior peso individual da Dimensão Procedimental)
-Formato: slides com estética limpa e minimalista — proibida a leitura de blocos longos de texto.
-O pitch deve conter, nesta ordem:
-Contextualização do problema institucional/organizacional solucionado
-Apresentação da solução proposta
-Apresentação do modelo lógico
-Demonstração da implementação (SQL rodando)
-Demonstração de consultas (gerenciais/auditoria)
-Potencial para BI e IA
-Benefícios diretos para a tomada de decisão da organização
-Defesa do modelo lógico: logo após o pitch, fora do tempo cronometrado, o grupo responde às perguntas do professor e da turma. Cada pergunta deve ser respondida exclusivamente pelo aluno a quem foi dirigida — os colegas não podem responder por ele.
-Regras da apresentação:
-Participação: não é necessário e nem recomendável que todos os integrantes falem durante o pitch, mas é obrigatório que todos participem da apresentação e estejam presentes para a defesa.
-Ausência: o integrante ausente na apresentação terá nota reduzida, exceto em casos com justificativa legal (ex.: doença que impeça o comparecimento, com atestado).
-Apresentação pessoal: será avaliada. Postura e vestimenta adequadas a uma apresentação corporativa. Não são adequados bonés, bermudas, chinelos, camisas de time, roupas esportivas ou semelhantes.
-
-Critérios Atitudinais (20%)
-Estes critérios NÃO constam explicitamente como item de entrega nos artefatos do grupo. Eles são avaliados por meio de Avaliação 360º entre os integrantes do grupo (cada membro avalia os colegas de equipe) e, no caso da colaboração, também pela colaboração equilibrada no histórico de commits do repositório GitHub (Seção 5) e pela conduta do grupo na Apresentação Corporativa Final (seção 7) — não pela leitura do relatório:
-Participação e colaboração (5%): participação técnica ativa + colaboração com o grupo, incluindo colaboração equilibrada no histórico de commits do repositório GitHub.
-Responsabilidade (5%): cumprimento de prazos + entrega dos itens sob sua responsabilidade.
-Postura profissional (5%): comunicação profissional + conduta ética.
-Autonomia e resolução de problemas (5%): buscar soluções independentes + propor melhorias.
-
-Resumo dos Pesos
-Dimensão
-Peso total
-Itens principais
-Conceitual
-30%
-Conversão conceitual→lógico (7,5%), Normalização (7,5%), Justificativas técnicas (7,5%), Análise BI/IA (7,5%)
-Procedimental
-50%
-Modelo lógico (10%), Implementação SQL (12%), Documentação/repositório (13%), Apresentação final (15%)
-Atitudinal
-20%
-Participação/colaboração, responsabilidade, postura profissional, autonomia
-
-
-Entrega final: Relatório Técnico + Dicionário de Dados + Modelo Conceitual + Modelo Lógico + Script SQL + Massa de Dados + Repositório GitHub, seguidos da Apresentação Corporativa Final perante o profess
+# 7. Apresentação Corporativa Final (Pitch)
+Preparada nos moldes exigidos (slides limpos e minimalistas), estruturada em 7 etapas cronometradas (Contextualização, Solução, Modelo Lógico, Implementação SQL, Demonstração de Consultas, Potencial de BI/IA e Benefícios para a Gestão), com a participação integral da equipe para a defesa técnica perante a banca.
